@@ -1,0 +1,420 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>釜山仨人行 · 2026.08.29 – 09.02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 釜山市品牌色：洋紅 → 紫 → 藍漸層 */
+  --deep:#0B1D52; --deep2:#14307A; --ruleD:#2A4A94;
+  --magenta:#E6007E; --magenta-d:#A8005C;
+  --purple:#7B2D9E; --blue:#1553A8; --cyan:#00A0E9;
+  --sky:#8FB2E8;
+  --paper:#EDF1F8; --card:#FBFCFE; --ink:#14203A; --muted:#5D6A85;
+  --sand:#E0E5F2; --rule:#D2DAE8;
+  --sea:#1553A8; --camellia:#E6007E; --camellia-d:#A8005C;
+  --sans:"Noto Sans TC",system-ui,sans-serif;
+  --disp:"Bricolage Grotesque","Noto Sans TC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(160deg,#14307A 0%,#0B1D52 55%,#0A1436 100%);color:#E9EFFA;padding:52px 0 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,#E6007E,#7B2D9E,#00A0E9)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.title{font-family:var(--disp);font-weight:800;font-size:clamp(52px,17vw,104px);line-height:.86;letter-spacing:-.045em;margin:14px 0 0;color:#fff}
+.title em{font-style:normal;background:linear-gradient(150deg,#FF2E9A 10%,#B13BC9 50%,#00A0E9 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.latin{font-family:var(--disp);font-weight:400;font-size:clamp(15px,4.4vw,22px);letter-spacing:.36em;text-transform:uppercase;color:var(--sky);margin-top:14px}
+.herofoot{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--ruleD);margin-top:30px;padding:20px 0 26px}
+.dates{font-family:var(--mono);font-size:13px;color:#B7C9E8;letter-spacing:.04em}
+.dates small{display:block;font-size:11px;color:#7C93BC;letter-spacing:.14em;margin-top:5px}
+.cdwrap{text-align:right;line-height:1}
+.cdwrap b{font-family:var(--disp);font-weight:800;font-size:clamp(46px,14vw,74px);letter-spacing:-.04em;color:#fff;display:block}
+.cdwrap span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
+
+/* ---------- tabs ---------- */
+.tabbar{position:sticky;top:0;z-index:30;background:#0B1D52;border-bottom:1px solid var(--ruleD)}
+.tabin{max-width:760px;margin:0 auto;padding:0 20px;display:flex;gap:24px;overflow-x:auto;scrollbar-width:none}
+.tabin::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:none;border:0;cursor:pointer;font-family:var(--disp);font-weight:600;font-size:14.5px;color:#7C93BC;padding:15px 0;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:#fff;border-bottom-color:var(--magenta)}
+.tab:hover{color:#CFDDF4}
+.panel{padding:30px 0 60px}
+.panel[hidden]{display:none}
+
+/* ---------- overview ---------- */
+.ov{background:var(--card);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.ovrow{display:grid;grid-template-columns:46px 1fr auto;gap:14px;align-items:center;padding:15px 16px;border-top:1px solid var(--rule);width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;font-family:var(--sans);cursor:pointer;color:inherit}
+.ovrow:first-child{border-top:0}
+.ovrow:hover{background:var(--paper)}
+.ovd{font-family:var(--disp);font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--purple)}
+.ovm{font-weight:500;font-size:15px}
+.ovs{font-size:12.5px;color:var(--muted);margin-top:1px}
+.ovh{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;background:var(--paper);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.fixed{list-style:none;display:grid;gap:11px;margin-top:4px}
+.fixed li{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;align-items:baseline}
+.fixed time{font-family:var(--mono);font-size:11.5px;color:var(--camellia-d);white-space:nowrap;letter-spacing:.03em}
+
+/* ---------- day pills ---------- */
+.pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;margin-bottom:20px;scrollbar-width:none;border-bottom:1px solid var(--rule)}
+.pills::-webkit-scrollbar{display:none}
+.pill-d{flex:0 0 auto;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 13px;cursor:pointer;text-align:left;font-family:var(--sans);color:var(--muted);line-height:1.3}
+.pill-d b{display:block;font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink)}
+.pill-d small{font-family:var(--mono);font-size:10px;letter-spacing:.06em}
+.pill-d[aria-selected="true"]{background:var(--deep);border-color:var(--deep)}
+.pill-d[aria-selected="true"] b{color:#fff}
+.pill-d[aria-selected="true"] small{color:var(--sky)}
+
+/* ---------- day ---------- */
+.day[hidden]{display:none}
+.dtop{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.dtitle{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.03em;line-height:1.1}
+.ddate{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.stay{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;background:var(--paper);border:1px dashed var(--rule);border-radius:6px;padding:3px 9px;color:var(--muted);white-space:nowrap}
+.dnote{font-size:13.5px;color:var(--muted);max-width:56ch}
+
+/* ---------- rail ---------- */
+.rail{margin:26px 0 8px;position:relative;height:42px}
+.railkey{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:9px}
+.railline{position:absolute;top:22px;left:0;right:0;height:1px;background:var(--rule)}
+.railspan{position:absolute;top:19px;height:7px;background:linear-gradient(90deg,#E6007E,#7B2D9E,#1553A8);border-radius:4px}
+.tick{position:absolute;top:17px;width:1px;height:11px;background:var(--rule)}
+.tlab{position:absolute;top:32px;font-size:9.5px;color:var(--muted);white-space:nowrap;transform:translateX(-50%)}
+.tlab.on{color:var(--ink);font-weight:500}
+
+/* ---------- timeline ---------- */
+.tl{margin-top:26px}
+.row{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--rule)}
+.t{font-family:var(--mono);font-size:12px;color:var(--sea);padding-top:2px}
+.n{font-weight:500;font-size:15px}
+.n a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
+.n a:hover{color:var(--sea);border-color:var(--sea)}
+.d{font-size:13px;color:var(--muted);margin-top:3px}
+.tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;border-radius:4px;padding:2px 6px;margin-right:6px;vertical-align:1.5px;text-transform:uppercase}
+.g-move{background:#DFE5F8;color:#17408C}
+.g-eat{background:#D7EEF9;color:#0A6A92}
+.g-fly{background:#FBDCEE;color:var(--magenta-d)}
+.g-who{background:var(--deep);color:var(--sky)}
+.warn{margin-top:8px;font-size:12.5px;line-height:1.6;border-left:2px solid var(--camellia);padding:3px 0 3px 11px;color:var(--camellia-d)}
+
+/* ---------- boxes ---------- */
+h2.sec{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+h2.sec.mt{margin-top:32px}
+.grid{display:grid;gap:14px}
+@media(min-width:600px){.grid.two{grid-template-columns:1fr 1fr}}
+.box{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:20px}
+.box h3{font-family:var(--disp);font-size:16px;font-weight:600;margin-bottom:12px;letter-spacing:-.01em}
+.box p{font-size:13.5px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:13.5px}
+.kv dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);padding-top:3px;text-transform:uppercase}
+.tbd{border-style:dashed}
+.opt{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.opt span{font-family:var(--disp);font-weight:600;font-size:15px;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:5px 12px}
+.stamp{font-family:var(--mono);font-size:10px;letter-spacing:.1em;background:var(--sand);border-radius:4px;padding:2px 7px;margin-left:7px;color:#3E5480;vertical-align:2px}
+
+/* ---------- checklist ---------- */
+.chk{list-style:none;display:grid;gap:1px}
+.chk label{display:flex;gap:11px;align-items:flex-start;padding:7px 5px;border-radius:7px;cursor:pointer;font-size:14px}
+.chk label:hover{background:var(--paper)}
+.chk input{margin-top:4px;accent-color:var(--sea);width:15px;height:15px;flex:0 0 auto}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through}
+.reset{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);background:none;border:1px solid var(--rule);border-radius:7px;padding:6px 11px;cursor:pointer;margin-top:14px;text-transform:uppercase}
+.reset:hover{border-color:var(--sea);color:var(--sea)}
+
+footer{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--muted);text-align:center;padding:0 0 40px;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--camellia);outline-offset:3px}
+</style>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">5 days · 4 nights</div>
+  <h1 class="title">釜山<em>仨</em>人行</h1>
+  <div class="latin">Busan</div>
+  <div class="herofoot">
+    <div class="dates">2026.08.29 (六) — 09.02 (三)<small>金海國際機場 PUS</small></div>
+    <div class="cdwrap"><b id="cd">—</b><span id="cdlab">days to go</span></div>
+  </div>
+</div></header>
+
+<div class="tabbar"><div class="tabin" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" aria-controls="p-ov">總覽</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p-days">行程</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p-fly">班機</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p-stay">住宿</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p-pack">打包</button>
+</div></div>
+
+<div class="wrap">
+
+<!-- ============ 總覽 ============ -->
+<div class="panel" id="p-ov" role="tabpanel">
+  <h2 class="sec">大概行程</h2>
+  <div class="ov">
+    <button class="ovrow" data-go="0"><span class="ovd">D1</span><span><span class="ovm">廣安里</span><span class="ovs">08/29 六 · 落地 → SPA LAND → 無人機秀</span></span><span class="ovh">廣安里／海雲台</span></button>
+    <button class="ovrow" data-go="1"><span class="ovd">D2</span><span><span class="ovm">機張 · 青沙浦</span><span class="ovs">08/30 日 · 斜坡滑車 → 青沙浦拍照 → 天空膠囊</span></span><span class="ovh">廣安里／海雲台</span></button>
+    <button class="ovrow" data-go="2"><span class="ovd">D3</span><span><span class="ovm">田浦 · 換宿</span><span class="ovs">08/31 一 · 早退房 → 咖啡街 → 83 Haechi → 換宿</span></span><span class="ovh">南浦／西面</span></button>
+    <button class="ovrow" data-go="3"><span class="ovd">D4</span><span><span class="ovm">甘川 · 南浦 · 影島</span><span class="ovs">09/01 二 · 市場群 → Momos → 最後一餐</span></span><span class="ovh">南浦／西面</span></button>
+    <button class="ovrow" data-go="4"><span class="ovd">D5</span><span><span class="ovm">分開行動</span><span class="ovs">09/02 三 · 蒨早班機，霈芳玩到晚上</span></span><span class="ovh">返程</span></button>
+  </div>
+
+  <h2 class="sec mt">整趟的形狀</h2>
+  <div class="box">
+    <div class="rail" data-from="0" data-to="97" data-on="0,1,2,3,4" style="margin-top:4px"></div>
+    <p style="margin-top:14px">前段往東走到底（機張、海雲台），中間停在廣安里，後段一路往西收（西面、南浦、甘川）。<strong style="font-weight:500;color:var(--ink)">整趟只搬一次行李</strong>，就在 8/31 晚上。</p>
+  </div>
+
+  <h2 class="sec mt">不能動的時間</h2>
+  <div class="box">
+    <ul class="fixed">
+      <li><time>8/28 23:00</time><span>霈、芳要到桃園 T1（凌晨班機）</span></li>
+      <li><time>8/30 16:00</time><span>天空膠囊 — 要提前 3 週～1 個月訂</span></li>
+      <li><time>8/29 20:00</time><span>廣安里無人機秀 — 只有週六有</span></li>
+      <li><time>8/31 08:00</time><span>前段住處退房，行李寄放</span></li>
+      <li><time>8/31 16:00</time><span>83 Haechi 已預訂 — 過號 3 分鐘作廢</span></li>
+      <li><time>9/1 18:00</time><span>Momos Yeongdo 打烊，只能下午去</span></li>
+      <li><time>9/2 10:30</time><span>蒨 起飛（08:30 前到機場）</span></li>
+      <li><time>9/2 22:00</time><span>霈、芳 起飛（20:00 前到機場）</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 行程 ============ -->
+<div class="panel" id="p-days" role="tabpanel" hidden>
+  <div class="pills" role="tablist">
+    <button class="pill-d" role="tab" aria-selected="true" aria-controls="d1"><b>D1</b><small>08/29 廣安里</small></button>
+    <button class="pill-d" role="tab" aria-selected="false" aria-controls="d2"><b>D2</b><small>08/30 機張·青沙浦</small></button>
+    <button class="pill-d" role="tab" aria-selected="false" aria-controls="d3"><b>D3</b><small>08/31 田浦·換宿</small></button>
+    <button class="pill-d" role="tab" aria-selected="false" aria-controls="d4"><b>D4</b><small>09/01 甘川·南浦</small></button>
+    <button class="pill-d" role="tab" aria-selected="false" aria-controls="d5"><b>D5</b><small>09/02 返程</small></button>
+  </div>
+
+  <article class="day" id="d1" role="tabpanel">
+    <div class="dtop"><span class="dtitle">廣安里</span><span class="ddate">Sat 08 / 29</span><span class="stay">住 廣安里／海雲台</span></div>
+    <p class="dnote">紅眼班機日。行程刻意排鬆，泡湯補眠，晚上走出飯店就看無人機秀。</p>
+    <div class="rail" data-from="46" data-to="64" data-on="2"></div>
+    <div class="tl">
+      <div class="row"><div class="t">02:40</div><div><div class="n"><span class="tag g-fly">霈 芳</span>LJ752 桃園 T1 → 金海</div><div class="d">06:15 抵達。</div>
+        <div class="warn">這是 8/29 凌晨的班機 — 8/28（五）晚上 23:00 前就要到桃園 T1。</div></div></div>
+      <div class="row"><div class="t">06:15</div><div><div class="n"><span class="tag g-fly">蒨</span>華航 桃園 → 金海</div><div class="d">09:30 抵達。</div></div></div>
+      <div class="row"><div class="t">10:30</div><div><div class="n"><span class="tag g-move">移動</span>金海機場／市區 → 住處</div><div class="d">輕電鐵轉地鐵，約 60 分（廣安里、海雲台都差不多）。先放行李。<br>霈和芳比蒨早 3 小時落地，可以先進市區吃早餐，再約在住處或路上會合。</div></div></div>
+      <div class="row"><div class="t">12:00</div><div><div class="n"><span class="tag g-eat">午餐</span>住處附近隨意</div><div class="d">落地第一餐，別走遠。</div></div></div>
+      <div class="row"><div class="t">14:00</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=SPA+LAND+Centum+City+Busan" target="_blank" rel="noopener">SPA LAND Centum City</a></div><div class="d">廣安里約 10 分、海雲台約 5 分。汗蒸幕補眠，是紅眼日最舒服的安排。</div></div></div>
+      <div class="row"><div class="t">18:00</div><div><div class="n"><span class="tag g-eat">晚餐</span>廣安里</div><div class="d">無人機秀在廣安里海灘。住海雲台的話要提早 30 分出發。</div></div></div>
+      <div class="row"><div class="t">20:00</div><div><div class="n">廣安里 M 無人機燈光秀</div><div class="d">每週六演出，約 12 分鐘，海灘任一處都看得到。8/29 剛好是六。</div>
+        <div class="warn">下雨、強風或颱風會當天取消。出門前查一下現場公告。</div></div></div>
+    </div>
+  </article>
+
+  <article class="day" id="d2" role="tabpanel" hidden>
+    <div class="dtop"><span class="dtitle">機張 · 青沙浦</span><span class="ddate">Sun 08 / 30</span><span class="stay">住 廣安里／海雲台</span></div>
+    <p class="dnote">最東邊的一天。滑完車一路往西，下午整個泡在青沙浦拍照，搭天空膠囊回尾浦收尾。</p>
+    <div class="rail" data-from="70" data-to="97" data-on="3,4"></div>
+    <div class="tl">
+      <div class="row"><div class="t">09:00</div><div><div class="n"><span class="tag g-move">移動</span>住處 → 機張</div><div class="d">地鐵 2 號線至海雲台／萇山，轉 1001 或 181 號公車，約 60 分。</div></div></div>
+      <div class="row"><div class="t">10:00</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Skyline+Luge+Busan" target="_blank" rel="noopener">Skyline Luge 斜坡滑車</a></div><div class="d">10:00–18:00。吊椅上山，4–5 條路線，一趟 2–3 分鐘。</div>
+        <div class="warn">線上買比較便宜，但還是要到櫃檯換票。週日人多，開門就到最保險。</div></div></div>
+      <div class="row"><div class="t">13:00</div><div><div class="n"><span class="tag g-move">移動</span>機張 → 青沙浦</div><div class="d">公車或計程車約 25 分。</div></div></div>
+      <div class="row"><div class="t">13:30</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Cheongsapo+Station+Blueline+Park+Busan" target="_blank" rel="noopener">青沙浦 · 灌籃高手平交道</a></div><div class="d">青沙浦站前的平交道，因為神似《灌籃高手》場景而爆紅。站前也整理過，有相框、長椅和裝置。</div></div></div>
+      <div class="row"><div class="t">14:00</div><div><div class="n">青沙浦鐵道小巷</div><div class="d">窄巷之間露出一段鐵軌，微微上坡所以視角很好看 — 這是比較少人知道的那種角度。</div></div></div>
+      <div class="row"><div class="t">14:30</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Cheongsapo+Daritdol+Observatory" target="_blank" rel="noopener">青沙浦 多利石觀景台</a></div><div class="d">走海邊過去約 10 分。青龍造型的天空步道，下半段是透明玻璃，像走在海上。</div>
+        <div class="warn">風大時會封閉。當天到現場才知道，別把它當唯一重點。</div></div></div>
+      <div class="row"><div class="t">15:20</div><div><div class="n">青沙浦紅白燈塔 · 防波堤</div><div class="d">紅燈塔配藍海，防波堤上適合拍全身。傍晚光線最好。</div></div></div>
+      <div class="row"><div class="t">15:30</div><div><div class="n"><span class="tag g-eat">咖啡</span>青沙浦海景咖啡廳</div><div class="d">走累了就進去坐，順便等膠囊的時段。</div></div></div>
+      <div class="row"><div class="t">16:00</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Haeundae+Blueline+Park+Sky+Capsule+Cheongsapo" target="_blank" rel="noopener">天空膠囊 青沙浦 → 尾浦</a></div><div class="d">離地 7–10 公尺、沿海岸 2 公里，單程約 30 分。從青沙浦往尾浦走，剛好接海雲台晚餐。</div>
+        <div class="warn">必須事先預約，旺季常 3 週到 1 個月前就售完 — 8/30 是週日，現在就要訂。三人要訂 3 人座艙。</div>
+        <div class="warn">拍照關鍵：預約時間前 30 分鐘先到海灘那一側，可以拍到膠囊在海上跑的畫面，上車後就拍不到了。下雨照常運行。</div></div></div>
+      <div class="row"><div class="t">17:00</div><div><div class="n"><span class="tag g-move">移動</span>尾浦 → 海雲台</div><div class="d">尾浦就在海雲台海水浴場旁邊，走路即到。</div></div></div>
+      <div class="row"><div class="t">18:00</div><div><div class="n"><span class="tag g-eat">晚餐</span><a href="https://www.google.com/maps/search/?api=1&query=Miryang+Sundae+Dwaeji+Gukbap+Haeundae" target="_blank" rel="noopener">密陽血腸豬肉湯飯 海雲台店</a></div></div></div>
+      <div class="row"><div class="t">20:00</div><div><div class="n"><span class="tag g-move">移動</span>回住處</div><div class="d">住海雲台的話從這裡直接回，省 15 分。</div></div></div>
+    </div>
+  </article>
+
+  <article class="day" id="d3" role="tabpanel" hidden>
+    <div class="dtop"><span class="dtitle">田浦 · 換宿</span><span class="ddate">Mon 08 / 31</span><span class="stay">住 南浦／西面</span></div>
+    <p class="dnote">換宿日。一早就退房把行李寄放好，整天空手行動，晚餐後再回來取。行李只搬一次。</p>
+    <div class="rail" data-from="24" data-to="52" data-on="1,2"></div>
+    <div class="tl">
+      <div class="row"><div class="t">08:00</div><div><div class="n">退房 → 行李寄放</div><div class="d">先辦完再出門，整天不用拖行李。訂房時要先確認可以退房後寄放，這是今天動線的前提。</div></div></div>
+      <div class="row"><div class="t">08:30</div><div><div class="n"><span class="tag g-eat">早餐</span><a href="https://www.google.com/maps/search/?api=1&query=All+Sunday+Gwangan+Busan" target="_blank" rel="noopener">All Sunday 廣安店</a></div><div class="d">08:00 開門，正對廣安里海灘的貝果店。住處旁邊，退房後走過去剛好。</div></div></div>
+      <div class="row"><div class="t">10:00</div><div><div class="n"><span class="tag g-move">移動</span>→ 西面 · 田浦</div><div class="d">廣安里出發約 25 分、海雲台約 35 分。</div></div></div>
+      <div class="row"><div class="t">10:40</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Strut+Coffee+Busan" target="_blank" rel="noopener">Strut Coffee</a></div><div class="d">田浦咖啡街。08:30–19:00，世界百大咖啡館之一，會排隊 — 排在最前面就是為了避開人潮。</div></div></div>
+      <div class="row"><div class="t">11:30</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=moody+bread+market+Busan" target="_blank" rel="noopener">moody bread market</a></div><div class="d">11:00 才開。內用每人低消一杯飲料。</div></div></div>
+      <div class="row"><div class="t">12:30</div><div><div class="n"><span class="tag g-eat">午餐</span>西面 밀면 麵屋</div></div></div>
+      <div class="row"><div class="t">13:30</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=LUFT+Luft+Mansion+Seomyeon+Busan" target="_blank" rel="noopener">LUFT &amp; Luft Mansion</a></div><div class="d">選物服飾店，不是咖啡廳。</div>
+        <div class="warn">西面店 12:00 才開、20:00 打烊。</div></div></div>
+      <div class="row"><div class="t">14:30</div><div><div class="n">田浦街區自由逛</div><div class="d">早退房多賺的一小時放在這裡，可以慢慢晃。</div></div></div>
+      <div class="row"><div class="t">15:30</div><div><div class="n"><span class="tag g-move">移動</span>回廣安里</div></div></div>
+      <div class="row"><div class="t">16:00</div><div><div class="n"><span class="tag g-eat">晚餐</span><a href="https://www.google.com/maps/search/?api=1&query=83+Haechi+Gwangalli+Busan" target="_blank" rel="noopener">83 Haechi 烤肉</a><span class="stamp">已預訂</span></div><div class="d">16:00 開門，一開門就進場是避開排隊的唯一辦法。</div>
+        <div class="warn">只能用 CatchTable App 線上排隊。叫號後只有 3 分鐘要出現，過號作廢 — 提前 15 分鐘到門口等，手機開著。</div></div></div>
+      <div class="row"><div class="t">18:30</div><div><div class="n"><span class="tag g-move">移動</span>取行李 → 後段住處 check-in</div><div class="d">廣安里到南浦約 40 分、到西面約 25 分。</div></div></div>
+    </div>
+  </article>
+
+  <article class="day" id="d4" role="tabpanel" hidden>
+    <div class="dtop"><span class="dtitle">甘川 · 南浦 · 影島</span><span class="ddate">Tue 09 / 01</span><span class="stay">住 南浦／西面</span></div>
+    <p class="dnote">最後一個完整的三人日。名單上一半的點都在今天，但全部步行可達。</p>
+    <div class="rail" data-from="0" data-to="12" data-on="0"></div>
+    <div class="tl">
+      <div class="row"><div class="t">09:00</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Gamcheon+Culture+Village+Busan" target="_blank" rel="noopener">甘川文化村</a></div><div class="d">南浦搭公車約 20 分；住西面則要先到南浦，多花 15 分。早去人少好拍。</div></div></div>
+      <div class="row"><div class="t">12:00</div><div><div class="n"><span class="tag g-eat">午餐</span>富平罐頭市場</div><div class="d">回南浦，小吃街覓食。</div></div></div>
+      <div class="row"><div class="t">13:00</div><div><div class="n">紅豆奶油艾草麻吉</div></div></div>
+      <div class="row"><div class="t">14:00</div><div><div class="n">國際市場 · 阿里郎街 · BIFF 廣場</div><div class="d">三個點連在一起。住南浦的話走出飯店就是。</div></div></div>
+      <div class="row"><div class="t">14:45</div><div><div class="n">新昌吐司</div></div></div>
+      <div class="row"><div class="t">15:30</div><div><div class="n">影島大橋</div><div class="d">走過橋去影島。</div></div></div>
+      <div class="row"><div class="t">16:00</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Momos+Coffee+Yeongdo+Roastery" target="_blank" rel="noopener">Momos Yeongdo Roastery</a></div><div class="d">釜山最有名的烘豆咖啡，空間很大。</div>
+        <div class="warn">只開到 18:00 — 一定要下午去，晚上會撲空。</div></div></div>
+      <div class="row"><div class="t">19:00</div><div><div class="n"><span class="tag g-eat">最後一餐</span>南浦排骨烤肉</div><div class="d">蒨明早就飛了，這是三個人一起的最後一頓。</div></div></div>
+    </div>
+  </article>
+
+  <article class="day" id="d5" role="tabpanel" hidden>
+    <div class="dtop"><span class="dtitle">分開行動</span><span class="ddate">Wed 09 / 02</span><span class="stay">退房返程</span></div>
+    <p class="dnote">蒨早上飛，霈和芳整個白天還在釜山 — 這天三個人不同步。</p>
+    <div class="rail" data-from="0" data-to="30" data-on="0,1"></div>
+    <div class="tl">
+      <div class="row"><div class="t">06:30</div><div><div class="n"><span class="tag g-who">蒨</span>住處 → 金海機場</div><div class="d">南浦約 60 分、西面約 45 分。抓 08:30 到機場。</div></div></div>
+      <div class="row"><div class="t">10:30</div><div><div class="n"><span class="tag g-fly">蒨</span>華航 金海 → 桃園</div><div class="d">11:55 抵達。</div></div></div>
+      <div class="row"><div class="t">11:00</div><div><div class="n"><span class="tag g-who">霈 芳</span>退房，行李寄放飯店</div></div></div>
+      <div class="row"><div class="t">12:00</div><div><div class="n">自由時間</div><div class="d">南浦沒逛完的，或去西面補買美妝（兩地相隔 15 分）。</div></div></div>
+      <div class="row"><div class="t">19:00</div><div><div class="n"><span class="tag g-who">霈 芳</span>取行李 → 金海機場</div><div class="d">抓 20:00 抵達機場。</div></div></div>
+      <div class="row"><div class="t">22:00</div><div><div class="n"><span class="tag g-fly">霈 芳</span>LJ751 金海 → 桃園 T1</div><div class="d">23:40 抵達。</div></div></div>
+    </div>
+  </article>
+</div>
+
+<!-- ============ 班機 ============ -->
+<div class="panel" id="p-fly" role="tabpanel" hidden>
+  <h2 class="sec">Flights</h2>
+  <div class="grid two">
+    <div class="box"><h3>霈 · 芳 — 真航空</h3>
+      <dl class="kv">
+        <dt>去程</dt><dd>LJ752 · 8/29 (六)<br>桃園 T1 02:40 → 金海 06:15</dd>
+        <dt>回程</dt><dd>LJ751 · 9/2 (三)<br>金海 22:00 → 桃園 T1 23:40</dd>
+        <dt>訂位</dt><dd>JAEQGJ · 2 名 · 往返</dd>
+      </dl>
+      <div class="warn">去程是凌晨班機，實際上 8/28（五）晚上就要出門。</div>
+    </div>
+    <div class="box"><h3>蒨 — 中華航空</h3>
+      <dl class="kv">
+        <dt>去程</dt><dd>8/29 (六)<br>桃園 06:15 → 金海 09:30</dd>
+        <dt>回程</dt><dd>9/2 (三)<br>金海 10:30 → 桃園 11:55</dd>
+      </dl>
+      <div class="warn">回程比霈和芳早 11.5 小時，最後一天不同步。</div>
+    </div>
+  </div>
+  <div class="box" style="margin-top:14px"><h3>金海機場 ↔ 市區</h3>
+    <p>輕電鐵至沙上站轉地鐵。到廣安里約 60 分（2 號線）、到南浦約 60 分（1 號線）。三人行李多的話，計程車也划算。</p></div>
+</div>
+
+<!-- ============ 住宿 ============ -->
+<div class="panel" id="p-stay" role="tabpanel" hidden>
+  <h2 class="sec">Stays</h2>
+  <div class="grid two">
+    <div class="box tbd"><h3>前兩晚 <span class="stamp">未定</span></h3>
+      <div class="opt"><span>廣安里</span><span>海雲台</span></div>
+      <dl class="kv"><dt>日期</dt><dd>8/29 – 8/30 · 2 晚</dd></dl>
+      <p style="margin-top:12px">目前行程是照廣安里排的：到海雲台 15 分、到南浦 40 分，位置居中；週六無人機秀走出門就到，83 Haechi 也在附近。改住海雲台的話，D1 晚上和 D3 傍晚都要多跑一趟廣安里。</p>
+      <div class="warn">訂房前確認兩件事：三人房型怎麼睡、以及 8/31 退房後能不能寄放行李（D3 動線靠這個）。</div>
+    </div>
+    <div class="box tbd"><h3>後兩晚 <span class="stamp">未定</span></h3>
+      <div class="opt"><span>南浦</span><span>西面</span></div>
+      <dl class="kv"><dt>日期</dt><dd>8/31 – 9/1 · 2 晚</dd></dl>
+      <p style="margin-top:12px">名單上 10 個點在南浦／影島，D4 幾乎整天都在走路可達的範圍。西面只有 5 個點，而南浦到西面只要 15 分鐘 — 住南浦兩邊都去得到，住西面則是 D4 每趟都要來回。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 打包 ============ -->
+<div class="panel" id="p-pack" role="tabpanel" hidden>
+  <h2 class="sec">Checklist</h2>
+  <div class="grid two">
+    <div class="box"><h3>行前要辦</h3><ul class="chk" id="chk-pre"></ul></div>
+    <div class="box"><h3>行李</h3><ul class="chk" id="chk-bag"></ul>
+      <button class="reset" id="reset">全部取消勾選</button></div>
+  </div>
+  <div class="box" style="margin-top:14px"><h3>八月底的釜山</h3>
+    <p>白天約 28–30°C、濕度高，海水浴場通常開到 8 月底。同時是颱風季尾聲 — 無人機秀和 Luge 都可能因天氣取消，行程留一點彈性。</p></div>
+</div>
+
+<footer>Busan 2026</footer>
+</div>
+
+<script>
+(function(){
+  var el=document.getElementById('cd'),lab=document.getElementById('cdlab');
+  var d=Math.ceil((new Date('2026-08-29T02:40:00+08:00')-new Date())/86400000);
+  if(d>0){el.textContent=d;}
+  else if(d>-5){el.textContent='NOW';lab.textContent='旅程進行中';}
+  else{el.textContent='✓';lab.textContent='旅程已結束';}
+})();
+
+(function(){
+  var stops=[{p:4,n:'甘川·南浦'},{p:26,n:'西面·田浦'},{p:50,n:'廣安里'},{p:76,n:'海雲台'},{p:96,n:'機張'}];
+  document.querySelectorAll('.rail').forEach(function(r){
+    var on=(r.dataset.on||'').split(',');
+    var h='<div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div>';
+    h+='<div class="railspan" style="left:'+r.dataset.from+'%;width:'+(r.dataset.to-r.dataset.from)+'%"></div>';
+    stops.forEach(function(s,i){
+      h+='<div class="tick" style="left:'+s.p+'%"></div>';
+      var st='left:'+s.p+'%';
+      if(i===0)st='left:0;transform:none';
+      if(i===stops.length-1)st='right:0;left:auto;transform:none';
+      h+='<div class="'+(on.indexOf(String(i))>-1?'tlab on':'tlab')+'" style="'+st+'">'+s.n+'</div>';
+    });
+    r.innerHTML=h;
+  });
+})();
+
+function wireTabs(tabs){
+  tabs.forEach(function(tab,i){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(t){
+        var on=t===tab;
+        t.setAttribute('aria-selected',on);
+        document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+      });
+    });
+    tab.addEventListener('keydown',function(e){
+      var j=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-1;
+      if(j>=0&&j<tabs.length){tabs[j].focus();tabs[j].click();}
+    });
+  });
+}
+var mainTabs=[].slice.call(document.querySelectorAll('.tabbar .tab'));
+var dayTabs=[].slice.call(document.querySelectorAll('.pill-d'));
+wireTabs(mainTabs);wireTabs(dayTabs);
+
+document.querySelectorAll('.ovrow').forEach(function(b){
+  b.addEventListener('click',function(){
+    mainTabs[1].click();dayTabs[+b.dataset.go].click();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+(function(){
+  var days=['2026-08-29','2026-08-30','2026-08-31','2026-09-01','2026-09-02'];
+  var i=days.indexOf(new Date().toISOString().slice(0,10));
+  if(i>-1){mainTabs[1].click();dayTabs[i].click();}
+})();
+
+(function(){
+  var pre=['護照效期 6 個月以上','韓國 K-ETA / 入境資料','換韓幣 或 開通海外提款','網卡 / eSIM 訂好','CatchTable App 裝好（83 Haechi 要用）','Skyline Luge 線上買票','Naver Map 或 KakaoMap 裝好','訂房確認信截圖','旅平險'];
+  var bag=['轉接頭（韓國 220V 圓兩孔）','行動電源','防曬 · 帽子 · 墨鏡','薄外套（室內冷氣強）','好走的鞋（甘川全是坡）','泳衣 / 海邊拖鞋','雨具（颱風季）','常備藥','環保袋（韓國店家不給塑膠袋）','洗衣精小包（住宿可能不附）'];
+  function build(id,items,key){
+    document.getElementById(id).innerHTML=items.map(function(t,i){
+      return '<li><label><input type="checkbox" data-k="'+key+i+'"><span>'+t+'</span></label></li>';}).join('');
+  }
+  build('chk-pre',pre,'pre');build('chk-bag',bag,'bag');
+  var boxes=[].slice.call(document.querySelectorAll('.chk input')),mem={};
+  function save(){try{window.storage&&window.storage.set('busan-checklist',JSON.stringify(mem));}catch(e){}}
+  (async function(){try{var r=await window.storage.get('busan-checklist');
+    if(r&&r.value){mem=JSON.parse(r.value);boxes.forEach(function(b){if(mem[b.dataset.k])b.checked=true;});}}catch(e){}})();
+  boxes.forEach(function(b){b.addEventListener('change',function(){mem[b.dataset.k]=b.checked;save();});});
+  document.getElementById('reset').addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false;});mem={};save();});
+})();
+</script>
