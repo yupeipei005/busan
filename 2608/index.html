@@ -69,7 +69,8 @@ body{background:#EDF1F8;background-color:#EDF1F8;min-height:100vh;color:var(--in
 .fixed time{font-family:var(--mono);font-size:11.5px;color:var(--camellia-d);white-space:nowrap;letter-spacing:.03em}
 
 /* ---------- day pills ---------- */
-.pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;margin-bottom:20px;scrollbar-width:none;border-bottom:1px solid var(--rule)}
+.pills{position:sticky;top:49px;z-index:20;display:flex;gap:8px;overflow-x:auto;padding:12px 0 12px;margin-bottom:20px;scrollbar-width:none;border-bottom:1px solid var(--rule);background:var(--paper);box-shadow:0 8px 12px -8px rgba(11,29,82,.10)}
+.pills::before{content:"";position:absolute;top:0;bottom:0;left:-20px;right:-20px;background:var(--paper);z-index:-1;border-bottom:1px solid var(--rule)}
 .pills::-webkit-scrollbar{display:none}
 .pill-d{flex:0 0 auto;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 13px;cursor:pointer;text-align:left;font-family:var(--sans);color:var(--muted);line-height:1.3}
 .pill-d b{display:block;font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink)}
@@ -80,7 +81,7 @@ body{background:#EDF1F8;background-color:#EDF1F8;min-height:100vh;color:var(--in
 
 /* ---------- day ---------- */
 
-.dtop{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.dtop{display:flex;scroll-margin-top:110px;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
 .dtitle{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.03em;line-height:1.1}
 .ddate{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
 .stay{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;background:var(--paper);border:1px dashed var(--rule);border-radius:6px;padding:3px 9px;color:var(--muted);white-space:nowrap}
@@ -195,7 +196,8 @@ footer{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--mu
 #t-ov:checked~.body #p-ov,#t-day:checked~.body #p-day,#t-fly:checked~.body #p-fly,#t-stay:checked~.body #p-stay,#t-shop:checked~.body #p-shop,#t-pack:checked~.body #p-pack{display:block}
 #t-ov:checked~.tabbar label[for=t-ov],#t-day:checked~.tabbar label[for=t-day],#t-fly:checked~.tabbar label[for=t-fly],#t-stay:checked~.tabbar label[for=t-stay],#t-shop:checked~.tabbar label[for=t-shop],#t-pack:checked~.tabbar label[for=t-pack]{color:#fff;border-bottom-color:var(--magenta)}
 /* 日籤 */
-.pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;margin-bottom:20px;scrollbar-width:none;border-bottom:1px solid var(--rule)}
+.pills{position:sticky;top:49px;z-index:20;display:flex;gap:8px;overflow-x:auto;padding:12px 0 12px;margin-bottom:20px;scrollbar-width:none;border-bottom:1px solid var(--rule);background:var(--paper);box-shadow:0 8px 12px -8px rgba(11,29,82,.10)}
+.pills::before{content:"";position:absolute;top:0;bottom:0;left:-20px;right:-20px;background:var(--paper);z-index:-1;border-bottom:1px solid var(--rule)}
 .pills::-webkit-scrollbar{display:none}
 .pills label{flex:0 0 auto;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 13px;cursor:pointer;line-height:1.3;-webkit-tap-highlight-color:transparent}
 .pills label b{display:block;font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink)}
@@ -268,18 +270,18 @@ h2.sec.mt{margin-top:32px}
 <div class="tabbar"><div class="tabin"><label for="t-ov">總覽</label><label for="t-day">行程</label><label for="t-fly">班機</label><label for="t-stay">住宿</label><label for="t-shop">店家</label><label for="t-pack">出發前</label></div></div>
 <div class="body"><div class="wrap">
 <div class="panel" id="p-ov"><h2 class="sec">大概行程</h2><div class="toc">
-<a href="#d1"><span class="ovd">D1<em>08/29 六</em></span><span><span class="ovm">沙上 · 廣安里</span><span class="ovs">沙上早餐 → SPA LAND → 無人機秀</span></span><span class="ovh">廣安里／海雲台</span></a>
-<a href="#d2"><span class="ovd">D2<em>08/30 日</em></span><span><span class="ovm">機張 · 青沙浦</span><span class="ovs">斜坡滑車 → 青沙浦 → 天空膠囊 → 荒嶺山夜景</span></span><span class="ovh">廣安里／海雲台</span></a>
-<a href="#d3"><span class="ovd">D3<em>08/31 一</em></span><span><span class="ovm">田浦 · 換宿</span><span class="ovs">早退房 → 田浦咖啡街 → 83 Haechi → 換宿</span></span><span class="ovh">南浦／西面</span></a>
-<a href="#d4"><span class="ovd">D4<em>09/01 二</em></span><span><span class="ovm">甘川 · 南浦 · 影島</span><span class="ovs">甘川 → 市場群 → ARTE MUSEUM → Momos → 最後一餐</span></span><span class="ovh">南浦／西面</span></a>
-<a href="#d5"><span class="ovd">D5<em>09/02 三</em></span><span><span class="ovm">分開行動</span><span class="ovs">蒨早班機，霈芳玩到晚上</span></span><span class="ovh">返程</span></a>
+<a href="#d1"><span class="ovd">D1<em>08/29 六</em></span><span><span class="ovm">沙上 · 廣安里</span><span class="ovs">沙上早餐 → SPA LAND → 無人機秀</span></span><span class="ovh">廣安里</span></a>
+<a href="#d2"><span class="ovd">D2<em>08/30 日</em></span><span><span class="ovm">機張 · 青沙浦</span><span class="ovs">斜坡滑車 → 青沙浦 → 天空膠囊 → 荒嶺山夜景</span></span><span class="ovh">廣安里</span></a>
+<a href="#d3"><span class="ovd">D3<em>08/31 一</em></span><span><span class="ovm">田浦 · 換宿</span><span class="ovs">早退房 → 田浦咖啡街 → 83 Haechi → 換宿</span></span><span class="ovh">南浦</span></a>
+<a href="#d4"><span class="ovd">D4<em>09/01 二</em></span><span><span class="ovm">甘川 · 南浦 · 影島</span><span class="ovs">甘川 → 市場群 → ARTE MUSEUM → Momos → 最後一餐</span></span><span class="ovh">南浦</span></a>
+<a href="#d5"><span class="ovd">D5<em>09/02 三</em></span><span><span class="ovm">分開行動</span><span class="ovs">蒨中午飛，霈芳玩到晚上</span></span><span class="ovh">返程</span></a>
 </div><h2 class="sec mt">整趟的形狀</h2><div class="box" style="margin-bottom:16px"><div class="rail"><div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div><div class="railspan" style="left:0%;width:97%"></div><div class="tick" style="left:4%"></div><div class="tlab on" style="left:0;transform:none">甘川·南浦</div><div class="tick" style="left:26%"></div><div class="tlab on" style="left:26%">西面·田浦</div><div class="tick" style="left:50%"></div><div class="tlab on" style="left:50%">廣安里</div><div class="tick" style="left:76%"></div><div class="tlab on" style="left:76%">海雲台</div><div class="tick" style="left:96%"></div><div class="tlab on" style="right:0;left:auto;transform:none">機張</div></div><p style="margin-top:14px;font-size:13.5px;color:var(--muted)">前段往東走到底（機張、青沙浦），中間停在廣安里，後段一路往西收（西面、南浦、甘川、影島）。<strong style="font-weight:500;color:var(--ink)">整趟只搬一次行李</strong>，就在 8/31 晚上。</p></div><h2 class="sec mt">不能動的時間</h2><div class="box"><ul class="fixed">
 <li><time>8/28 23:40</time><span>霈、芳 要到桃園 T1（02:40 班機）</span></li>
 <li><time>8/29 03:15</time><span>蒨 要到桃園 T1（06:15 班機）</span></li>
 <li><time>8/29 20:00</time><span>廣安里無人機秀 — 只有週六有</span></li>
 <li><time>8/30 09:30</time><span>Skyline Luge 提早排隊（10:00 開門）</span></li>
 <li><time>8/31 16:00</time><span>83 Haechi 已預訂 — 過號 3 分鐘作廢</span></li>
-<li><time>9/2 07:30</time><span>蒨 要到金海機場（10:30 班機）</span></li>
+<li><time>9/2 09:15</time><span>蒨 要到金海機場（12:15 班機）</span></li>
 <li><time>9/2 19:00</time><span>霈、芳 要到金海機場（22:00 班機）</span></li>
 </ul></div></div>
 <div class="panel" id="p-day"><div class="tabs">
@@ -288,7 +290,7 @@ h2.sec.mt{margin-top:32px}
 <input type="radio" name="d" id="dd3">
 <input type="radio" name="d" id="dd4">
 <input type="radio" name="d" id="dd5">
-<div id="daytop" style="scroll-margin-top:56px"></div><div class="pills">
+<div id="daytop" style="scroll-margin-top:110px"></div><div class="pills">
 <label for="dd1"><b>D1</b><small>08/29 沙上·廣安里</small></label>
 <label for="dd2"><b>D2</b><small>08/30 機張·青沙浦</small></label>
 <label for="dd3"><b>D3</b><small>08/31 田浦·換宿</small></label>
@@ -296,7 +298,7 @@ h2.sec.mt{margin-top:32px}
 <label for="dd5"><b>D5</b><small>09/02 返程</small></label>
 </div><div class="days">
 <article class="day" id="d1">
-    <div class="dtop"><span class="dtitle">Day 1</span><span class="dsub">沙上 · 廣安里</span><span class="ddate">Sat 08 / 29</span><span class="stay">住 廣安里／海雲台</span></div>
+    <div class="dtop"><span class="dtitle">Day 1</span><span class="dsub">沙上 · 廣安里</span><span class="ddate">Sat 08 / 29</span><span class="stay">住 廣安里 Aqua Palace</span></div>
     <p class="dnote">紅眼班機日。霈芳先在沙上吃早餐等蒨，中午泡湯補眠，晚上走出住處就看無人機秀。</p><div class="lock"><ul class="fixed"><li><time>8/28 23:40</time><span>霈、芳 要到桃園 T1（02:40 班機）</span></li><li><time>8/29 03:15</time><span>蒨 要到桃園 T1（06:15 班機）</span></li><li><time>8/29 20:00</time><span>廣安里無人機秀 — 只有週六有</span></li></ul></div>
 <div class="rail"><div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div><div class="railspan" style="left:46%;width:18%"></div><div class="tick" style="left:4%"></div><div class="tlab" style="left:0;transform:none">甘川·南浦</div><div class="tick" style="left:26%"></div><div class="tlab" style="left:26%">西面·田浦</div><div class="tick" style="left:50%"></div><div class="tlab on" style="left:50%">廣安里</div><div class="tick" style="left:76%"></div><div class="tlab" style="left:76%">海雲台</div><div class="tick" style="left:96%"></div><div class="tlab" style="right:0;left:auto;transform:none">機張</div></div>
     <div class="tl">
@@ -316,7 +318,7 @@ h2.sec.mt{margin-top:32px}
 </div></div>
       <div class="row"><div class="t">10:45</div><div><div class="n">沙上站會合</div><div class="d">約在地鐵閘門外（不是輕電鐵那側），等等要一起搭 2 號線。10:45–11:15 之間。</div></div></div>
       <div class="row"><div class="t">11:15</div><div><div class="n"><span class="tag g-move">移動</span>沙上站 → 中洞站（Centum City）</div><div class="d">地鐵 2 號線直達不用換車，約 25 分。沿途會經過西面站、田浦站、廣安站、水營站。</div>
-        <div class="warn">前兩晚住廣安里的話：廣安站就在這條線上，可以先下車放行李再回頭搭到中洞，只多約 15 分鐘。住海雲台就直接去汗蒸幕，泡完再回去放。</div></div></div>
+        <div class="warn">廣安站就在這條線上（沙上出發約 25 分）。可以先下車把行李放到 Aqua Palace 再回頭搭到中洞，只多約 15 分鐘。</div></div></div>
       <div class="row"><div class="t">12:00</div><div><div class="n">汗蒸幕</div><div class="d">紅眼班機日最舒服的安排 — 吃飯、泡湯、補眠一次解決。</div>
         <div class="shops"><div class="shop"><div class="szh">SPA LAND Centum City</div>
         <div class="sline"><span class="mprice">4 小時 26,000 韓元</span><span class="mhrs">09:00–22:00</span></div>
@@ -326,15 +328,17 @@ h2.sec.mt{margin-top:32px}
         <div class="warn">一次入場限 4 小時，超時加收。12:00 進、16:00 前出來就不會超時。</div></div></div>
       <div class="row"><div class="t">12:30</div><div><div class="n"><span class="tag g-eat">午餐</span>SPA LAND 內用餐</div><div class="d">裡面有餐廳，消費離場時一起結算，不用帶錢包進去。</div></div></div>
       <div class="row"><div class="t">13:30</div><div><div class="n">泡湯 · 汗蒸幕補眠</div></div></div>
-      <div class="row"><div class="t">16:00</div><div><div class="n"><span class="tag g-move">移動</span>→ 住處 check-in</div><div class="d">Centum City 到廣安里約 10 分、海雲台約 5 分。</div></div></div>
-      <div class="row"><div class="t">19:00</div><div><div class="n"><span class="tag g-eat">晚餐</span>廣安里</div><div class="d">無人機秀在廣安里海灘，晚餐就在附近解決。住海雲台的話要提早 30 分出發。</div></div></div>
+      <div class="row"><div class="t">16:00</div><div><div class="n">新世界百貨 Centum City 逛街</div><div class="d">SPA LAND 就在這棟樓裡，泡完直接搭電梯下去。開到 20:30（週六）。</div>
+        <div class="shops"><div class="shop"><div class="szh">POP MART</div><div class="sline"><span class="mhrs">10:30–20:30</span></div><div class="mkr">팝마트 신세계센텀시티점</div><div class="snote">B2 Hyper Ground。Labubu、Molly、Dimoo 等盲盒。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%8C%9D%EB%A7%88%ED%8A%B8%20%EC%8B%A0%EC%84%B8%EA%B3%84%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%8C%9D%EB%A7%88%ED%8A%B8%20%EC%8B%A0%EC%84%B8%EA%B3%84%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">三麗鷗 Sanrio</div><div class="sline"><span class="mhrs">10:30–20:30</span></div><div class="mkr">산리오 신세계센텀시티점</div><div class="snote">B1。Hello Kitty 主題與限定周邊。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EC%82%B0%EB%A6%AC%EC%98%A4%20%EC%8B%A0%EC%84%B8%EA%B3%84%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EC%82%B0%EB%A6%AC%EC%98%A4%20%EC%8B%A0%EC%84%B8%EA%B3%84%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
+      <div class="row"><div class="t">17:30</div><div><div class="n"><span class="tag g-move">移動</span>→ 住處 check-in</div><div class="d">Centum City 到廣安里約 10 分。</div></div></div>
+      <div class="row"><div class="t">19:00</div><div><div class="n"><span class="tag g-eat">晚餐</span>廣安里</div><div class="d">無人機秀在廣安里海灘，飯店走出去就是。晚餐在附近解決即可。</div></div></div>
       <div class="row"><div class="t">20:00</div><div><div class="n">廣安里 M 無人機燈光秀</div><div class="d">每週六演出，約 12 分鐘，海灘任一處都看得到。8/29 剛好是六。</div>
         <div class="warn">下雨、強風或颱風會當天取消。出門前查一下現場公告。</div></div></div>
       <div class="row"><div class="t">21:00</div><div><div class="n">酒吧 <span class="stamp">待定</span></div><div class="d">廣安里海邊那排幾乎都看得到廣安大橋。霈芳前一晚幾乎沒睡，太累就直接回去休息。</div></div></div>
     </div>
   <div class="daynav"><span></span><a href="#top" class="dnbtn top">↑ 回最上面</a><label for="dd2" class="dnbtn">Day 2 · 青沙浦 →</label></div></article>
   <article class="day" id="d2">
-    <div class="dtop"><span class="dtitle">Day 2</span><span class="dsub">機張 · 青沙浦</span><span class="ddate">Sun 08 / 30</span><span class="stay">住 廣安里／海雲台</span></div>
+    <div class="dtop"><span class="dtitle">Day 2</span><span class="dsub">機張 · 青沙浦</span><span class="ddate">Sun 08 / 30</span><span class="stay">住 廣安里 Aqua Palace</span></div>
     <p class="dnote">最東邊的一天。滑完車一路往西，下午整個泡在青沙浦拍照，搭天空膠囊回尾浦收尾。</p><div class="lock"><ul class="fixed"><li><time>09:30</time><span>Skyline Luge 提早排隊（10:00 開門）</span></li><li><time>16:00</time><span>天空膠囊 — 需事先預約</span></li></ul></div>
     <div class="rail"><div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div><div class="railspan" style="left:70%;width:27%"></div><div class="tick" style="left:4%"></div><div class="tlab" style="left:0;transform:none">甘川·南浦</div><div class="tick" style="left:26%"></div><div class="tlab" style="left:26%">西面·田浦</div><div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">廣安里</div><div class="tick" style="left:76%"></div><div class="tlab on" style="left:76%">海雲台</div><div class="tick" style="left:96%"></div><div class="tlab on" style="right:0;left:auto;transform:none">機張</div></div>
     <div class="tl">
@@ -361,33 +365,33 @@ h2.sec.mt{margin-top:32px}
         <div class="warn">回程叫車叫不到 — 停車場附近通常有計程車在等，直接跟司機談比較快。</div>
         <div class="warn">要穿好走的鞋，山上晚上會涼，帶件薄外套。</div></div></div>
       <div class="row"><div class="t">21:00</div><div><div class="n">Blue bang 荒嶺山 <span class="stamp">選配</span></div><div class="d">觀景台旁的咖啡廳，開到凌晨 2 點，4.4★。坐窗邊看夜景，價位跟星巴克差不多。</div><div class="shops"><div class="shop"><div class="szh">Blue bang 荒嶺山</div><div class="sline"><span class="mrate">★ 4.4 <i>129</i></span><span class="mhrs">11:00–02:00</span></div><div class="mkr">블루방 황령산</div><div class="snote">觀景台旁的夜景咖啡廳，價位跟星巴克差不多。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B8%94%EB%A3%A8%EB%B0%A9%20%ED%99%A9%EB%A0%B9%EC%82%B0" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EB%B8%94%EB%A3%A8%EB%B0%A9%20%ED%99%A9%EB%A0%B9%EC%82%B0" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
-      <div class="row"><div class="t">21:30</div><div><div class="n"><span class="tag g-move">移動</span>回住處</div><div class="d">計程車下山，到廣安里約 20 分。</div></div></div>
+      <div class="row"><div class="t">21:30</div><div><div class="n"><span class="tag g-move">移動</span>回住處</div><div class="d">計程車下山，到 Aqua Palace 約 20 分。</div></div></div>
     </div>
   <div class="daynav"><label for="dd1" class="dnbtn">← Day 1 · 沙上</label><a href="#top" class="dnbtn top">↑ 回最上面</a><label for="dd3" class="dnbtn">Day 3 · 田浦 →</label></div></article>
 <article class="day" id="d3">
-    <div class="dtop"><span class="dtitle">Day 3</span><span class="dsub">田浦 · 換宿</span><span class="ddate">Mon 08 / 31</span><span class="stay">住 南浦／西面</span></div>
-    <p class="dnote">換宿日。09:00 退房把行李寄放好就出門，整天空手行動，晚餐後再回來取。行李只搬一次。</p><div class="lock"><ul class="fixed"><li><time>09:00</time><span>退房，行李寄放</span></li><li><time>16:00</time><span>83 Haechi 已預訂 — 過號 3 分鐘作廢</span></li></ul></div>
+    <div class="dtop"><span class="dtitle">Day 3</span><span class="dsub">田浦 · 換宿</span><span class="ddate">Mon 08 / 31</span><span class="stay">住 南浦 Button Hotel</span></div>
+    <p class="dnote">換宿日。09:00 退房把行李寄放好就出門，整天空手行動，晚餐後再回來取。行李只搬一次。</p><div class="lock"><ul class="fixed"><li><time>09:00</time><span>前段住處退房，行李寄放</span></li><li><time>16:00</time><span>83 Haechi 已預訂 — 過號 3 分鐘作廢</span></li></ul></div>
     <div class="rail"><div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div><div class="railspan" style="left:24%;width:28%"></div><div class="tick" style="left:4%"></div><div class="tlab" style="left:0;transform:none">甘川·南浦</div><div class="tick" style="left:26%"></div><div class="tlab on" style="left:26%">西面·田浦</div><div class="tick" style="left:50%"></div><div class="tlab on" style="left:50%">廣安里</div><div class="tick" style="left:76%"></div><div class="tlab" style="left:76%">海雲台</div><div class="tick" style="left:96%"></div><div class="tlab" style="right:0;left:auto;transform:none">機張</div></div>
     <div class="tl">
       <div class="row"><div class="t">09:00</div><div><div class="n">退房 → 行李寄放 → 出門</div><div class="d">辦完直接出發，整天不用拖行李。訂房時要先確認可以退房後寄放，這是今天動線的前提。</div></div></div>
-      <div class="row"><div class="t">09:40</div><div><div class="n"><span class="tag g-move">移動</span>抵達 西面 · 田浦</div><div class="d">廣安里出發約 25 分、海雲台約 35 分。</div></div></div>
+      <div class="row"><div class="t">09:40</div><div><div class="n"><span class="tag g-move">移動</span>抵達 西面 · 田浦</div><div class="d">廣安里搭 2 號線約 25 分。</div></div></div>
       <div class="row"><div class="t">10:00</div><div><div class="n"><span class="tag g-eat">咖啡</span><a href="https://www.google.com/maps/search/?api=1&query=Strut+Coffee+Busan" target="_blank" rel="noopener">Strut Coffee</a></div><div class="d">08:30 開門，早去最不用排。留一小時。</div><div class="shops"><div class="shop"><div class="szh">Strut Coffee</div><div class="sline"><span class="mhrs">08:30–19:00</span></div><div class="mkr">스트럿커피</div><div class="snote">世界百大咖啡館之一，會排隊。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EC%8A%A4%ED%8A%B8%EB%9F%BF%EC%BB%A4%ED%94%BC" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EC%8A%A4%ED%8A%B8%EB%9F%BF%EC%BB%A4%ED%94%BC" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
       <div class="row"><div class="t">11:00</div><div><div class="n">田浦街區晃晃</div><div class="d">咖啡街本身就是景，巷子裡都是選物店和小店，隨便走。</div></div></div>
       <div class="row"><div class="t">12:00</div><div><div class="n"><span class="tag g-eat">午餐</span>西面</div><div class="d">밀면 是釜山限定的冷麵，來這裡才吃得到；想換口味就選漢堡或披薩。</div>
         <div class="shops"><div class="shop"><div class="szh">西面밀면</div><div class="sline"><span class="mrate">★ 4.6 <i>681</i></span><span class="mhrs">10:30–20:30</span></div><div class="mkr">서면밀면</div><div class="snote">只有三樣：湯冷麵、辣拌冷麵、蒸餃。湯頭濃、麵條有嚼勁，份量大。門口 kiosk 可選英文、刷卡。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EB%A9%B4%EB%B0%80%EB%A9%B4" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EC%84%9C%EB%A9%B4%EB%B0%80%EB%A9%B4" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">Frank Burger 西面店</div><div class="sline"><span class="mrate">★ 4.3 <i></i></span><span class="mhrs">11:00–21:00</span></div><div class="mkr">프랭크버거 서면점</div><div class="snote">點餐機有英文，飲料無限續，套餐約 12,000。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%94%84%EB%9E%AD%ED%81%AC%EB%B2%84%EA%B1%B0%20%EC%84%9C%EB%A9%B4%EC%A0%90" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%94%84%EB%9E%AD%ED%81%AC%EB%B2%84%EA%B1%B0%20%EC%84%9C%EB%A9%B4%EC%A0%90" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">Pickles 披薩</div><div class="sline"><span class="mrate">★ 5.0 <i>697</i></span><span class="mhrs">11:00–21:00</span></div><div class="mkr">피클스 서면</div><div class="snote">美式披薩，可點半半口味。很受歡迎，大約要等 10 分鐘。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%94%BC%ED%81%B4%EC%8A%A4%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%94%BC%ED%81%B4%EC%8A%A4%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
       <div class="row"><div class="t">13:30</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=moody+bread+market+Busan" target="_blank" rel="noopener">moody bread market</a></div><div class="d">飯後麵包。內用每人低消一杯飲料，也可以外帶當隔天早餐。</div><div class="shops"><div class="shop"><div class="szh">moody bread market</div><div class="sline"><span class="mhrs">11:00–21:00</span></div><div class="mkr">무디브레드마켓</div><div class="snote">內用每人低消一杯飲料。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%AC%B4%EB%94%94%EB%B8%8C%EB%A0%88%EB%93%9C%EB%A7%88%EC%BC%93" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EB%AC%B4%EB%94%94%EB%B8%8C%EB%A0%88%EB%93%9C%EB%A7%88%EC%BC%93" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
       <div class="row"><div class="t">14:30</div><div><div class="n">逛街 · 西面 或 廣安里</div><div class="d">西面：地下街、Olive Young、百貨，選擇多。廣安里：早點回去在海邊晃，離 83 Haechi 近不用趕。看當天狀況決定。</div>
-        <div class="shops"><div class="shop"><div class="szh">LUFT & Luft Mansion 西面</div><div class="sline"><span class="mhrs">12:00–20:00</span></div><div class="mkr">루프트 맨션 서면</div><div class="snote">選物服飾店，不是咖啡廳。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%A3%A8%ED%94%84%ED%8A%B8%20%EB%A7%A8%EC%85%98%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EB%A3%A8%ED%94%84%ED%8A%B8%20%EB%A7%A8%EC%85%98%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
+        <div class="shops"><div class="shop"><div class="szh">LUFT & Luft Mansion 西面</div><div class="sline"><span class="mhrs">12:00–20:00</span></div><div class="mkr">루프트 맨션 서면</div><div class="snote">選物服飾店，不是咖啡廳。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%A3%A8%ED%94%84%ED%8A%B8%20%EB%A7%A8%EC%85%98%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EB%A3%A8%ED%94%84%ED%8A%B8%20%EB%A7%A8%EC%85%98%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">NOCLAIM</div><div class="sline"><span class="mrate">★ 4.6 <i>24</i></span><span class="mhrs">13:00–20:00</span></div><div class="mkr">노클레임 부산</div><div class="snote">Hoka、New Balance、Keene，以及 Needles、Nanamica 等設計師品牌。刷卡機很舊，帶點現金比較保險。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%85%B8%ED%81%B4%EB%A0%88%EC%9E%84%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EB%85%B8%ED%81%B4%EB%A0%88%EC%9E%84%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">POP MART 三井塔店</div><div class="sline"><span class="mrate">★ 3.8 <i>46</i></span><span class="mhrs">11:00–21:30</span></div><div class="mkr">팝마트 부산 삼정타워</div><div class="snote">西面站 2 號出口走 5 分。9 樓，同棟有 Shake Shack。店內不能帶飲料進去。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%8C%9D%EB%A7%88%ED%8A%B8%20%EB%B6%80%EC%82%B0%20%EC%82%BC%EC%A0%95%ED%83%80%EC%9B%8C" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%8C%9D%EB%A7%88%ED%8A%B8%20%EB%B6%80%EC%82%B0%20%EC%82%BC%EC%A0%95%ED%83%80%EC%9B%8C" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">樂天百貨 西面店</div><div class="sline"><span class="mrate">★ 4.2 <i>11,040</i></span><span class="mhrs">10:30–20:00</span></div><div class="mkr">롯데백화점 부산본점</div><div class="snote">Hoka 在 Good Runner Company 櫃。三麗鷗快閃店也常設在這。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%A1%AF%EB%8D%B0%EB%B0%B1%ED%99%94%EC%A0%90%20%EB%B6%80%EC%82%B0%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EB%B0%B1%ED%99%94%EC%A0%90%20%EB%B6%80%EC%82%B0%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
       <div class="row"><div class="t">15:30</div><div><div class="n"><span class="tag g-move">移動</span>回廣安里</div></div></div>
       <div class="row"><div class="t">16:00</div><div><div class="n"><span class="tag g-eat">晚餐</span><a href="https://www.google.com/maps/search/?api=1&query=83+Haechi+Gwangalli+Busan" target="_blank" rel="noopener">83 Haechi 烤肉</a><span class="stamp">已預訂</span></div><div class="d">16:00 開門，一開門就進場是避開排隊的唯一辦法。</div><div class="shops"><div class="shop"><div class="szh">83 Haechi 烤肉</div><div class="sline"><span class="mhrs">16:00–24:00</span></div><div class="mkr">83해치 광안리</div><div class="snote">已預訂。CatchTable App 排隊，過號 3 分鐘作廢。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=83%ED%95%B4%EC%B9%98%20%EA%B4%91%EC%95%88%EB%A6%AC" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/83%ED%95%B4%EC%B9%98%20%EA%B4%91%EC%95%88%EB%A6%AC" target="_blank" rel="noopener">Naver</a></div></div></div>
         <div class="warn">只能用 CatchTable App 線上排隊。叫號後只有 3 分鐘要出現，過號作廢 — 提前 15 分鐘到門口等，手機開著。</div></div></div>
       <div class="row"><div class="t">17:30</div><div><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=All+Sunday+Gwangan+Busan" target="_blank" rel="noopener">All Sunday 廣安店</a></div><div class="d">吃完烤肉散步過去，就在廣安里海灘對面。買了明天早上的貝果也行。</div>
         <div class="shops"><div class="shop"><div class="szh">All Sunday 廣安店</div><div class="sline"><span class="mrate">★ 4.7 <i>734</i></span><span class="mhrs">08:00–22:00</span></div><div class="mkr">올선데이 광안점</div><div class="snote">正對廣安里海灘的貝果店。藍莓、洋蔥、紅豆蜂蜜奶油口味評價最好。內用不能用外帶杯。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88%EC%A0%90" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88%EC%A0%90" target="_blank" rel="noopener">Naver</a></div></div></div></div></div>
-      <div class="row"><div class="t">18:30</div><div><div class="n"><span class="tag g-move">移動</span>取行李 → 後段住處 check-in</div><div class="d">廣安里到南浦約 40 分、到西面約 25 分。</div></div></div>
+      <div class="row"><div class="t">18:30</div><div><div class="n"><span class="tag g-move">移動</span>取行李 → 南浦 check-in</div><div class="d">廣安里到南浦約 40 分（2 號線轉 1 號線至札嘎其站）。飯店 16:00 起可入住，這時間到剛好。</div></div></div>
     </div>
   <div class="daynav"><label for="dd2" class="dnbtn">← Day 2 · 青沙浦</label><a href="#top" class="dnbtn top">↑ 回最上面</a><label for="dd4" class="dnbtn">Day 4 · 南浦 →</label></div></article>
 <article class="day" id="d4">
-    <div class="dtop"><span class="dtitle">Day 4</span><span class="dsub">甘川 · 南浦 · 影島</span><span class="ddate">Tue 09 / 01</span><span class="stay">住 南浦／西面</span></div>
+    <div class="dtop"><span class="dtitle">Day 4</span><span class="dsub">甘川 · 南浦 · 影島</span><span class="ddate">Tue 09 / 01</span><span class="stay">住 南浦 Button Hotel</span></div>
     <p class="dnote">最後一個完整的三人日。名單上一半的點都在今天，但全部走路可達，時間排得鬆一點。</p><div class="lock"><ul class="fixed"><li><time>18:00</time><span>Momos Yeongdo 打烊 — 只能下午去</span></li></ul></div>
     <div class="rail"><div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div><div class="railspan" style="left:0%;width:12%"></div><div class="tick" style="left:4%"></div><div class="tlab on" style="left:0;transform:none">甘川·南浦</div><div class="tick" style="left:26%"></div><div class="tlab" style="left:26%">西面·田浦</div><div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">廣安里</div><div class="tick" style="left:76%"></div><div class="tlab" style="left:76%">海雲台</div><div class="tick" style="left:96%"></div><div class="tlab" style="right:0;left:auto;transform:none">機張</div></div>
     <div class="tl">
@@ -404,21 +408,21 @@ h2.sec.mt{margin-top:32px}
     </div>
   <div class="extra"><div class="exhd">有時間再去</div>
   <div class="exbody"><div class="n"><a href="https://www.google.com/maps/search/?api=1&query=Huinnyeoul+Culture+Village+Yeongdo+Busan" target="_blank" rel="noopener">白淺灘文化村</a></div>
-  <div class="d">山壁上一排白房子，下面就是海，傍晚光線最好。今天排得比較鬆，Momos 出來如果還有力氣就走過去，不然 D5 霈芳可以再來。</div><div class="shops"><div class="shop"><div class="szh">白淺灘文化村</div><div class="sline"></div><div class="mkr">흰여울문화마을</div><div class="snote">釜山的聖托里尼。石階和斜坡多，要穿好走的鞋。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener">Naver</a></div></div></div>
+  <div class="d">山壁上一排白房子，下面就是海，傍晚光線最好。今天排得比較鬆，Momos 出來如果還有力氣就走過去，不然 D5 霈芳可以再來。</div><div class="shops"><div class="shop"><div class="szh">白淺灘文化村</div><div class="sline"></div><div class="mkr">흰여울문화마을</div><div class="snote">釜山的聖托里尼。石階和斜坡多，要穿好走的鞋。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener">Naver</a></div></div><div class="shop"><div class="szh">Having moment</div><div class="sline"><span class="mrate">★ 4.5 <i>259</i></span><span class="mhrs">09:00–20:00</span></div><div class="mkr">헤빙모먼트</div><div class="snote">白淺灘那條海岸路上的海景咖啡廳。一定要上二樓和頂樓。人多時要先找到座位才能點餐。司康和葡式蛋塔很推。</div><div class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=%ED%97%A4%EB%B9%99%EB%AA%A8%EB%A8%BC%ED%8A%B8" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%97%A4%EB%B9%99%EB%AA%A8%EB%A8%BC%ED%8A%B8" target="_blank" rel="noopener">Naver</a></div></div></div>
   <div class="warn">是有人住的社區，巷子很窄，別闖進私人住宅或陽台。全程石階和斜坡。</div></div></div><div class="daynav"><label for="dd3" class="dnbtn">← Day 3 · 田浦</label><a href="#top" class="dnbtn top">↑ 回最上面</a><label for="dd5" class="dnbtn">Day 5 · 返程 →</label></div></article>
 <article class="day" id="d5">
     <div class="dtop"><span class="dtitle">Day 5</span><span class="dsub">分開行動</span><span class="ddate">Wed 09 / 02</span><span class="stay">退房返程</span></div>
-    <p class="dnote">蒨早上飛，霈和芳整個白天還在釜山 — 這天三個人不同步。</p><div class="lock"><ul class="fixed"><li><time>07:30</time><span>蒨 要到金海機場（10:30 班機）</span></li><li><time>19:00</time><span>霈、芳 要到金海機場（22:00 班機）</span></li></ul></div>
+    <p class="dnote">蒨中午飛，霈和芳整個白天還在釜山 — 這天三個人不同步。</p><div class="lock"><ul class="fixed"><li><time>09:15</time><span>蒨 要到金海機場（12:15 班機）</span></li><li><time>19:00</time><span>霈、芳 要到金海機場（22:00 班機）</span></li></ul></div>
     <div class="rail"><div class="railkey"><span>西 WEST</span><span>EAST 東</span></div><div class="railline"></div><div class="railspan" style="left:0%;width:30%"></div><div class="tick" style="left:4%"></div><div class="tlab on" style="left:0;transform:none">甘川·南浦</div><div class="tick" style="left:26%"></div><div class="tlab on" style="left:26%">西面·田浦</div><div class="tick" style="left:50%"></div><div class="tlab" style="left:50%">廣安里</div><div class="tick" style="left:76%"></div><div class="tlab" style="left:76%">海雲台</div><div class="tick" style="left:96%"></div><div class="tlab" style="right:0;left:auto;transform:none">機張</div></div>
     <div class="tl">
       <div class="row split"><div class="t">全日</div><div class="lanes">
-  <div class="lane qq"><div class="lanehd qq">蒨 · 早班機</div>
-    <div class="n">06:30 住處 → 金海機場</div><div class="d">南浦約 60 分、西面約 45 分。07:30 前要到。</div>
-    <div class="n" style="margin-top:9px">10:30 華航 金海 → 桃園</div><div class="d">11:55 抵達。</div>
+  <div class="lane qq"><div class="lanehd qq">蒨 · 12:15 起飛</div>
+    <div class="n">08:15 南浦 → 金海機場</div><div class="d">札嘎其站搭 1 號線至沙上轉輕電鐵，約 60 分。09:15 前要到。</div>
+    <div class="n" style="margin-top:9px">12:15 華航 金海 → 桃園</div>
   </div>
   <div class="lane pf"><div class="lanehd pf">霈 · 芳 · 玩到晚上</div>
-    <div class="n">11:00 退房，行李寄放飯店</div>
-    <div class="n" style="margin-top:9px">12:00 想去哪去哪</div><div class="d">整個下午到晚上 7 點都是空的。南浦沒逛完的、影島白淺灘補拍、西面補買美妝（15 分），或找間咖啡廳坐著都行。</div>
+    <div class="n">12:00 退房，行李寄放飯店</div><div class="d">Button Hotel 退房是 12:00，比一般晚一小時，早上可以多睡。</div>
+    <div class="n" style="margin-top:9px">12:30 想去哪去哪</div><div class="d">整個下午到晚上 7 點都是空的。南浦沒逛完的、影島白淺灘補拍、西面補買美妝（15 分），或找間咖啡廳坐著都行。</div>
     <div class="n" style="margin-top:9px">18:00 取行李 → 金海機場</div><div class="d">19:00 前要到機場，多留一小時比較保險。</div>
     <div class="n" style="margin-top:9px">22:00 LJ751 金海 → 桃園 T1</div><div class="d">23:40 抵達。</div>
   </div>
@@ -440,34 +444,41 @@ h2.sec.mt{margin-top:32px}
     <div class="box"><h3>蒨 — 中華航空</h3>
       <dl class="kv">
         <dt>去程</dt><dd>8/29 (六)<br>桃園 06:15 → 金海 09:30</dd>
-        <dt>回程</dt><dd>9/2 (三)<br>金海 10:30 → 桃園 11:55</dd>
+        <dt>回程</dt><dd>9/2 (三)<br>金海 12:15 → 桃園</dd>
       </dl>
-      <div class="warn">回程比霈和芳早 11.5 小時，最後一天不同步。</div>
+      <div class="warn">回程比霈和芳早約 10 小時，最後一天不同步。</div>
     </div>
   </div>
   <div class="box" style="margin-top:14px"><h3>金海機場 ↔ 市區</h3>
     <p>輕電鐵至沙上站轉地鐵。到廣安里約 60 分（2 號線）、到南浦約 60 分（1 號線）。三人行李多的話，計程車也划算。</p></div>
 </div>
 <div class="panel" id="p-stay"><h2 class="sec">Stays</h2>
-<div class="box" style="margin-bottom:14px;border-color:var(--magenta)">
-  <h3>住宿確認事項</h3>
-  <ul class="conf">
-    <li><b>能不能寄放行李</b></li>
-    <li><b>有沒有電梯</b><span>釜山很多住宿在坡上或老建築，扛行李會很累。</span></li>
-  </ul>
-</div>
+
 <div class="grid two">
-  <div class="box tbd"><h3>前兩晚 <span class="stamp">未定</span></h3>
-    <div class="opt"><span>廣安里</span><span>海雲台</span></div>
-    <dl class="kv"><dt>日期</dt><dd>8/29 – 8/30 · 2 晚</dd></dl>
-    <p style="margin-top:12px"><strong style="font-weight:500;color:var(--ink)">住廣安里</strong>：到海雲台 15 分、到西面 25 分，位置居中；週六無人機秀走出門就到，83 Haechi 也在附近。</p>
-    <p style="margin-top:8px"><strong style="font-weight:500;color:var(--ink)">住海雲台</strong>：到廣安里 15 分、到西面 35 分；D1 晚上看無人機秀要多跑一趟，D3 傍晚回廣安里吃 83 Haechi 也繞得比較遠，可能就要帶著行李走了。</p>
+  <div class="box"><h3>前兩晚 <span class="stamp" style="background:#DCE6FA;color:#1B4C9E">廣安里</span></h3>
+    <div class="szh" style="font-size:16px;margin-bottom:8px">Hotel Aqua Palace</div>
+    <dl class="kv">
+      <dt>日期</dt><dd>8/29 – 8/30 · 2 晚</dd>
+      <dt>地址</dt><dd>水營區 廣安海邊路 225 號<br><span style="color:var(--muted)">廣安里海灘正對面</span></dd>
+      <dt>評分</dt><dd>3.7 / 1,412 則</dd>
+    </dl>
+    <div class="mlinks" style="margin-top:12px"><a href="https://www.google.com/maps/search/?api=1&query=Hotel%20Aqua%20Palace%20225%20Gwanganhaebyeon-ro%20Suyeong-gu%20Busan" target="_blank" rel="noopener">Google</a><a href="https://map.naver.com/p/search/%ED%98%B8%ED%85%94%20%EC%95%84%EC%BF%A0%EC%95%84%ED%8C%B0%EB%A6%AC%EC%8A%A4%20%EA%B4%91%EC%95%88%EB%A6%AC" target="_blank" rel="noopener">Naver</a></div>
+    
+    
+    
   </div>
-  <div class="box tbd"><h3>後兩晚 <span class="stamp">未定</span></h3>
-    <div class="opt"><span>南浦</span><span>西面</span></div>
-    <dl class="kv"><dt>日期</dt><dd>8/31 – 9/1 · 2 晚</dd></dl>
-    <p style="margin-top:12px"><strong style="font-weight:500;color:var(--ink)">住南浦</strong>：名單上 10 個點在南浦／影島，D4 幾乎整天走路可達。到西面只要 15 分，兩邊都去得到。</p>
-    <p style="margin-top:8px"><strong style="font-weight:500;color:var(--ink)">住西面</strong>：只有 5 個點在附近，D4 每趟都要來回南浦；但 D3 晚上換宿比較近，D5 去機場也快 15 分。</p>
+  <div class="box"><h3>後兩晚 <span class="stamp" style="background:#DCE6FA;color:#1B4C9E">南浦洞</span></h3>
+    <div class="szh" style="font-size:16px;margin-bottom:8px">Busan Nampodong Button Hotel</div>
+    <dl class="kv">
+      <dt>入住</dt><dd>8/31 (一) 16:00</dd>
+      <dt>退房</dt><dd>9/2 (三) 12:00</dd>
+      <dt>房型</dt><dd>VIP Twin Room · 3 位大人</dd>
+      <dt>訂單</dt><dd>1756954310 · TsaiPei</dd>
+      <dt>地址</dt><dd>西區 九德路114番街 27 號<br><span style="color:var(--muted)">札嘎其站旁</span></dd>
+    </dl>
+    <div class="mlinks" style="margin-top:12px"><a href="%s" target="_blank" rel="noopener">Google</a><a href="%s" target="_blank" rel="noopener">Naver</a></div>
+    
+    
   </div>
 </div></div>
 <div class="panel" id="p-shop"><h2 class="sec">店家清單</h2><p class="pintro">Naver 不顯示星等，只有訪客與部落格評論數 — 點 Naver Map 進去就看得到當地人的評價量。星等是 Google 的，斜體是評論則數。</p><div class="plist"><div class="pgrp">D1</div><div class="pitem">
@@ -577,8 +588,18 @@ h2.sec.mt{margin-top:32px}
   <div class="plinks"><a href="https://www.google.com/maps/search/?api=1&query=%EB%AA%A8%EB%AA%A8%EC%8A%A4%EC%BB%A4%ED%94%BC%20%EC%98%81%EB%8F%84" target="_blank" rel="noopener">Google Maps</a><a href="https://map.naver.com/p/search/%EB%AA%A8%EB%AA%A8%EC%8A%A4%EC%BB%A4%ED%94%BC%20%EC%98%81%EB%8F%84" target="_blank" rel="noopener">Naver Map</a></div>
 </div></div></div>
 <div class="panel" id="p-pack"><h2 class="sec">出發前</h2>
-<div class="grid two"><div class="box"><h3>行前要辦</h3><ul class="chk"><li><label><input type="checkbox"><span>護照效期 6 個月以上</span></label></li><li><label><input type="checkbox"><span>韓國 K-ETA / 入境資料</span></label></li><li><label><input type="checkbox"><span>換韓幣 或 開通海外提款</span></label></li><li><label><input type="checkbox"><span>網卡 / eSIM 訂好</span></label></li><li><label><input type="checkbox"><span>CatchTable App 裝好（83 Haechi 要用）</span></label></li><li><label><input type="checkbox"><span>天空膠囊線上預約</span></label></li><li><label><input type="checkbox"><span>Skyline Luge 線上買票</span></label></li><li><label><input type="checkbox"><span>Naver Map 或 KakaoMap 裝好</span></label></li><li><label><input type="checkbox"><span>訂房確認信截圖</span></label></li><li><label><input type="checkbox"><span>旅平險</span></label></li></ul></div><div class="box"><h3>行李</h3><ul class="chk"><li><label><input type="checkbox"><span>轉接頭（韓國 220V 圓兩孔）</span></label></li><li><label><input type="checkbox"><span>行動電源</span></label></li><li><label><input type="checkbox"><span>防曬 · 帽子 · 墨鏡</span></label></li><li><label><input type="checkbox"><span>薄外套（室內冷氣強）</span></label></li><li><label><input type="checkbox"><span>好走的鞋（甘川、白淺灘全是坡）</span></label></li><li><label><input type="checkbox"><span>雨具（颱風季）</span></label></li><li><label><input type="checkbox"><span>常備藥</span></label></li><li><label><input type="checkbox"><span>環保袋（韓國店家不給塑膠袋）</span></label></li><li><label><input type="checkbox"><span>洗衣精小包（住宿可能不附）</span></label></li></ul></div></div>
-<div class="box" style="margin-top:14px"><h3>八月底的釜山</h3><p>白天約 28–30°C、濕度高。同時是颱風季尾聲 — 無人機秀和 Luge 都可能因天氣取消，行程留一點彈性。天空膠囊下雨照常運行。</p></div>
+<div class="grid two"><div class="box"><h3>行前要辦</h3><ul class="chk"><li><label><input type="checkbox"><span>護照效期 6 個月以上</span></label></li><li><label><input type="checkbox"><span>電子入境卡 e-Arrival Card（8/27–8/28 填）</span></label></li><li><label><input type="checkbox"><span>換韓幣 或 開通海外提款</span></label></li><li><label><input type="checkbox"><span>網卡 / eSIM 訂好</span></label></li><li><label><input type="checkbox"><span>CatchTable App 裝好（83 Haechi 要用）</span></label></li><li><label><input type="checkbox"><span>天空膠囊線上預約</span></label></li><li><label><input type="checkbox"><span>Skyline Luge 線上買票</span></label></li><li><label><input type="checkbox"><span>Naver Map 或 KakaoMap 裝好</span></label></li><li><label><input type="checkbox"><span>訂房確認信截圖</span></label></li><li><label><input type="checkbox"><span>旅平險</span></label></li></ul></div><div class="box"><h3>行李</h3><ul class="chk"><li><label><input type="checkbox"><span>轉接頭（韓國 220V 圓兩孔）</span></label></li><li><label><input type="checkbox"><span>行動電源</span></label></li><li><label><input type="checkbox"><span>防曬 · 帽子 · 墨鏡</span></label></li><li><label><input type="checkbox"><span>薄外套（室內冷氣強）</span></label></li><li><label><input type="checkbox"><span>好走的鞋（甘川、白淺灘全是坡）</span></label></li><li><label><input type="checkbox"><span>雨具（颱風季）</span></label></li><li><label><input type="checkbox"><span>常備藥</span></label></li><li><label><input type="checkbox"><span>環保袋（韓國店家不給塑膠袋）</span></label></li><li><label><input type="checkbox"><span>洗衣精小包（住宿可能不附）</span></label></li></ul></div></div>
+<div class="box" style="margin-top:14px;border-color:var(--magenta)"><h3>電子入境卡 e-Arrival Card</h3>
+<p style="color:var(--ink)">紙本入境卡已全面取代。<strong style="font-weight:500">只能在抵達前 3 天內填，效期 72 小時</strong> — 超過沒入境就失效要重填。</p>
+<ul class="conf" style="margin-top:12px">
+<li><b>什麼時候填</b><span>8/29 抵達 → 8/26 起開放，但那樣剛好卡在 72 小時邊緣。建議 8/27–8/28 填。霈芳 8/28 晚上就要出門，那天早上填完最剛好。</span></li>
+<li><b>免費</b><span>官網 e-arrivalcard.go.kr，別用會收費的代辦網站。</span></li>
+
+<li><b>先準備護照照片檔</b><span>可以自動帶入資料，三個人能一起填。</span></li>
+<li><b>免 K-ETA</b><span>台灣旅客豁免延長到 2026/12/31。已有有效 K-ETA 或 SeS 自動通關的人免填電子入境卡。</span></li>
+<li><b>Q-Code 免填</b><span>從台灣出發、無症狀可以不用填健康申報。</span></li>
+</ul>
+<div class="mlinks" style="margin-top:12px"><a href="https://www.e-arrivalcard.go.kr/portal/main/index.do?locale=CH" target="_blank" rel="noopener">前往官網申報</a></div></div><div class="box" style="margin-top:14px"><h3>八月底的釜山</h3><p>白天約 28–30°C、濕度高。同時是颱風季尾聲 — 無人機秀和 Luge 都可能因天氣取消，行程留一點彈性。天空膠囊下雨照常運行。</p></div>
 
 </div>
 <footer>Busan · 2026.08.29 — 09.02</footer>
