@@ -1,1 +1,919 @@
+<title>釜山五日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F3F4F2;
+  --surface:#FCFDFC;
+  --sunk:#E9EBE8;
+  --ink:#101A21;
+  --ink-soft:#56646C;
+  --ink-faint:#8D9A9E;
+  --rule:#D9DEDA;
+  --rule-hard:#C3CAC5;
+  --signal:#B5402A;
+  --signal-soft:rgba(181,64,42,.08);
+  --l1:#9B3FA0;
+  --l2:#008FB0;
+  --l3:#5E9E2E;
+  --l4:#E0611A;
+  --l5:#B5820F;
+  --disp:"Archivo","Noto Sans TC",-apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;
+  --sans:"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --navh:54px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0B1116;--surface:#141D23;--sunk:#101920;
+    --ink:#E8EEEF;--ink-soft:#94A3A8;--ink-faint:#6A787E;
+    --rule:#243139;--rule-hard:#33434C;
+    --signal:#EA7B5E;--signal-soft:rgba(234,123,94,.12);
+    --l1:#C167C6;--l2:#2CB6D6;--l3:#84C455;--l4:#F5843F;--l5:#DCA828;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0B1116;--surface:#141D23;--sunk:#101920;
+  --ink:#E8EEEF;--ink-soft:#94A3A8;--ink-faint:#6A787E;
+  --rule:#243139;--rule-hard:#33434C;
+  --signal:#EA7B5E;--signal-soft:rgba(234,123,94,.12);
+  --l1:#C167C6;--l2:#2CB6D6;--l3:#84C455;--l4:#F5843F;--l5:#DCA828;
+}
 
+*{box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:48rem;margin:0 auto;padding-inline:20px;padding-block:0 60px}
+
+/* ============ MASTHEAD ============ */
+.mast{padding-block:40px 0}
+.slug{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 18px;
+}
+.slug .code{background:var(--ink);color:var(--paper);padding:2px 7px;border-radius:2px;letter-spacing:.12em}
+h1{
+  font-family:var(--disp);font-weight:900;
+  font-size:clamp(3rem,15vw,5.5rem);line-height:.92;letter-spacing:-.02em;
+  margin:0;text-wrap:balance;
+}
+.bridge{display:block;width:100%;height:auto;margin:24px 0 0;color:var(--rule-hard)}
+.bridge .lamp{fill:var(--l5)}
+.bridge .water{stroke:var(--rule)}
+
+/* ============ MAIN NAV ============ */
+.mainnav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:12;
+  background:var(--paper);border-bottom:1px solid var(--rule);
+  display:flex;gap:5px;align-items:center;height:var(--navh);
+  margin-block:18px 0;
+}
+.mt{
+  appearance:none;border:0;background:transparent;cursor:pointer;
+  font-family:var(--disp);font-weight:700;font-size:15.5px;
+  color:var(--ink-faint);padding:7px 16px;border-radius:3px;
+  line-height:1.3;letter-spacing:.02em;
+}
+.mt:hover{color:var(--ink-soft)}
+.mt[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.mt:focus-visible{outline:2px solid var(--l2);outline-offset:2px}
+
+.sect{padding-block:30px 0}
+.sect > h2.shd{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;
+}
+
+/* ============ FLIGHTS ============ */
+.flights{display:grid;gap:14px;margin:14px 0 0}
+.fl{background:var(--surface);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.flhd{
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  padding:11px 16px;border-bottom:1px solid var(--rule);background:var(--sunk);
+}
+.flno{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.06em}
+.flmeta{font-size:12px;color:var(--ink-soft)}
+.fldate{
+  margin-left:auto;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.1em;color:var(--ink-faint);
+}
+.flroute{
+  display:grid;grid-template-columns:auto minmax(4rem,1fr) auto;
+  gap:0 14px;align-items:center;padding:16px 16px 14px;
+}
+.ep{display:grid;gap:1px}
+.ep.r{text-align:right;justify-items:end}
+.ep .code{font-family:var(--disp);font-weight:800;font-size:1.55rem;line-height:1;letter-spacing:-.01em}
+.ep .time{
+  font-family:var(--mono);font-size:15px;font-weight:500;
+  font-variant-numeric:tabular-nums;margin-top:3px;
+}
+.ep .place{font-size:11.5px;color:var(--ink-soft);line-height:1.4;white-space:nowrap}
+.arc{position:relative;display:flex;align-items:center;justify-content:center;align-self:start;margin-top:14px}
+.arc::before{
+  content:"";position:absolute;left:0;right:0;top:50%;height:2px;
+  transform:translateY(-50%);background:var(--rule-hard);border-radius:2px;
+}
+.arc .dur{
+  position:relative;background:var(--surface);padding:0 7px;
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  color:var(--ink-soft);white-space:nowrap;
+}
+.flnotes{
+  list-style:none;margin:0;padding:12px 16px 14px;
+  border-top:1px solid var(--rule);display:grid;gap:7px;
+}
+.flnotes li{
+  font-size:13px;color:var(--ink-soft);line-height:1.6;
+  padding-left:15px;position:relative;
+}
+.flnotes li::before{
+  content:"";position:absolute;left:0;top:.66em;
+  width:5px;height:5px;border-radius:50%;background:var(--rule-hard);
+}
+.flnotes li strong{color:var(--ink);font-weight:700}
+.flnotes li.w{color:var(--signal)}
+.flnotes li.w::before{background:var(--signal)}
+.flnotes li.w strong{color:var(--signal)}
+.tzchip{
+  display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.08em;border:1px solid var(--rule-hard);color:var(--ink-faint);
+  border-radius:2px;padding:0 5px;line-height:1.7;margin-top:4px;
+}
+
+/* ============ NOTICE ============ */
+.notice{margin-block:26px 0;border:1px solid var(--signal);border-radius:4px;overflow:hidden}
+.notice header{
+  background:var(--signal-soft);border-bottom:1px solid var(--signal);
+  padding:9px 15px;display:flex;align-items:center;gap:9px;
+}
+.notice header h3{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal);margin:0;
+}
+.notice header .n{
+  font-family:var(--mono);font-size:10px;color:var(--signal);
+  border:1px solid var(--signal);border-radius:10px;padding:0 7px;margin-left:auto;
+}
+.todo{list-style:none;margin:0;padding:13px 15px;display:grid;gap:12px;background:var(--surface)}
+.todo li{display:flex;gap:11px;align-items:flex-start}
+.todo input{
+  appearance:none;width:18px;height:18px;flex:0 0 18px;margin-top:3px;
+  border:1.5px solid var(--rule-hard);border-radius:3px;background:var(--paper);
+  cursor:pointer;position:relative;
+}
+.todo input:checked{background:var(--signal);border-color:var(--signal)}
+.todo input:checked::after{
+  content:"";position:absolute;left:5.5px;top:2px;width:4px;height:9px;
+  border:solid var(--surface);border-width:0 2px 2px 0;transform:rotate(43deg);
+}
+.todo input:focus-visible{outline:2px solid var(--l2);outline-offset:2px}
+.todo label{cursor:pointer;font-size:14.5px;font-weight:500;line-height:1.45}
+.todo input:checked+label{color:var(--ink-faint);text-decoration:line-through}
+.todo .why{display:block;font-size:12.5px;font-weight:400;color:var(--ink-soft);text-decoration:none;line-height:1.55;margin-top:2px}
+
+/* ============ INFO GRID ============ */
+.ngrid{
+  display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:4px;overflow:hidden;margin-top:14px;
+  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+}
+.ni{background:var(--surface);padding:14px 16px}
+.ni h4{font-size:13px;font-weight:700;margin:0 0 5px;letter-spacing:.02em}
+.ni p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.65}
+.subhd{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);margin:30px 0 0;
+}
+
+/* ============ LINE SELECTOR ============ */
+.lines{
+  position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh));z-index:9;
+  background:var(--paper);padding-block:12px 0;border-bottom:1px solid var(--rule);
+  display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+}
+.lines::-webkit-scrollbar{display:none}
+.ln{
+  flex:0 0 auto;appearance:none;border:0;background:transparent;cursor:pointer;
+  padding:0 0 12px;text-align:left;min-width:6.4rem;font-family:var(--sans);color:var(--ink-faint);
+}
+.ln .bar{display:block;height:5px;border-radius:3px;background:var(--c);opacity:.28;margin-bottom:8px;transition:opacity .15s}
+.ln .dt{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;font-weight:500}
+.ln .nm{display:block;font-size:13.5px;font-weight:500;line-height:1.35;margin-top:1px}
+.ln:hover{color:var(--ink-soft)}
+.ln:hover .bar{opacity:.55}
+.ln[aria-selected="true"]{color:var(--ink)}
+.ln[aria-selected="true"] .bar{opacity:1}
+.ln[aria-selected="true"] .nm{font-weight:700}
+.ln:focus-visible{outline:2px solid var(--l2);outline-offset:3px}
+
+/* ============ DAY ============ */
+.day{padding-block:28px 0}
+[data-l="1"]{--c:var(--l1)} [data-l="2"]{--c:var(--l2)}
+[data-l="3"]{--c:var(--l3)} [data-l="4"]{--c:var(--l4)}
+[data-l="5"]{--c:var(--l5)}
+
+.dayhead{display:grid;grid-template-columns:auto 1fr;gap:0 15px;align-items:start}
+.badge{
+  width:46px;height:46px;border-radius:50%;background:var(--c);color:#fff;
+  display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:20px;line-height:1;
+}
+.dayhead h3{font-family:var(--disp);font-weight:900;font-size:1.75rem;margin:0;line-height:1.15;letter-spacing:-.01em}
+.dayhead .stamp{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.11em;
+  color:var(--c);display:block;margin-bottom:3px;
+}
+.dayhead .gist{grid-column:2;color:var(--ink-soft);font-size:13.5px;margin:7px 0 0;line-height:1.6}
+
+.route{margin:24px 0 0;padding:0;list-style:none}
+.stop{display:grid;grid-template-columns:3.1rem 26px 1fr;gap:0 13px}
+.at{
+  font-family:var(--mono);font-size:12px;font-weight:500;font-variant-numeric:tabular-nums;
+  color:var(--ink-faint);padding-top:16px;text-align:right;
+}
+.rail{position:relative}
+.rail::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:6px;background:var(--c)}
+.stop:first-child .rail::before{top:22px;border-radius:3px 3px 0 0}
+.stop:last-child .rail::before{bottom:auto;height:22px;border-radius:0 0 3px 3px}
+.rail::after{
+  content:"";position:absolute;left:50%;top:22px;transform:translate(-50%,-50%);
+  width:11px;height:11px;border-radius:50%;background:var(--paper);border:3px solid var(--c);
+}
+.stop.key .rail::after{width:19px;height:19px;border-width:5px}
+.stop.eat .rail::after{width:13px;height:13px;border-radius:3px;background:var(--c);border:3px solid var(--paper)}
+.cell{padding:13px 0 15px;min-width:0}
+.nm2{font-weight:700;font-size:15.5px;line-height:1.45}
+.kr{color:var(--ink-faint);font-size:12.5px;font-weight:400;font-family:var(--mono)}
+.tip{color:var(--ink-soft);font-size:13.5px;margin:4px 0 0;line-height:1.65}
+.warn{color:var(--signal);font-size:13px;margin:7px 0 0;line-height:1.55;padding-left:13px;border-left:2px solid var(--signal)}
+.tag{
+  display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;
+  padding:1px 6px;border-radius:2px;margin-left:7px;vertical-align:2.5px;line-height:1.6;
+}
+.tag.pass{background:var(--c);color:#fff}
+.tag.bk{border:1px solid var(--signal);color:var(--signal)}
+.tag.alt{border:1px solid var(--rule-hard);color:var(--ink-faint)}
+.jump{
+  display:inline-flex;align-items:center;gap:6px;margin-top:7px;
+  font-family:var(--sans);font-size:13.5px;font-weight:500;
+  color:var(--c);text-decoration:none;
+  border:1px solid var(--c);border-radius:3px;padding:4px 11px;
+  background:transparent;cursor:pointer;line-height:1.5;
+}
+.jump .ar{font-family:var(--mono);font-size:11px;opacity:.75}
+.jump:hover{background:var(--c);color:#fff}
+.jump:hover .ar{opacity:1}
+.jump:focus-visible{outline:2px solid var(--l2);outline-offset:2px}
+.menu{margin:9px 0 0;background:var(--sunk);border-radius:4px;padding:10px 13px}
+.menu .hd{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:5px;
+}
+.menu p{margin:0;font-size:13.5px;line-height:1.6}
+.menu ul{margin:0;padding:0;list-style:none;display:grid;gap:5px;font-size:13.5px;line-height:1.55}
+.menu ul li{padding-left:15px;position:relative}
+.menu ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--ink-faint)}
+.menu ul li:first-child::before{background:var(--c)}
+.menu em{font-style:normal;color:var(--ink-soft);font-size:12.5px}
+
+/* ============ FOOD ============ */
+.area{padding-block:28px 0}
+.areahd{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap;margin-bottom:2px}
+.areahd .dot{width:11px;height:11px;border-radius:50%;background:var(--c);flex:0 0 11px}
+.areahd h3{font-family:var(--disp);font-weight:900;font-size:1.2rem;margin:0;letter-spacing:-.005em}
+.areahd .cnt{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-left:auto;letter-spacing:.08em}
+.areahd .where{width:100%;font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.55}
+.eats{list-style:none;margin:0;padding:0 0 0 16px;border-left:3px solid var(--c);display:grid;gap:0;margin-top:12px}
+.lk{display:inline-flex;gap:4px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+.lk a{
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.07em;
+  text-decoration:none;border:1px solid var(--rule-hard);color:var(--ink-faint);
+  border-radius:2px;padding:0 5px;line-height:1.7;
+}
+.lk a:hover{border-color:var(--c,var(--ink));color:var(--ink)}
+.lk a:focus-visible{outline:2px solid var(--l2);outline-offset:1px}
+.kind{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;
+  color:var(--ink-faint);border:1px solid var(--rule);border-radius:2px;
+  padding:0 5px;line-height:1.7;white-space:nowrap;
+}
+.eats li{padding:11px 0 11px 0;border-bottom:1px solid var(--rule)}
+.eats li:last-child{border-bottom:0;padding-bottom:0}
+.eats .top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.eats .fn{font-weight:700;font-size:15px;line-height:1.4}
+.eats .note{margin:3px 0 0;font-size:13px;color:var(--ink-soft);line-height:1.6}
+.slot{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  color:#fff;background:var(--c);border-radius:2px;padding:1px 6px;line-height:1.6;white-space:nowrap;
+}
+.slot.alt{background:transparent;color:var(--ink-faint);border:1px solid var(--rule-hard)}
+
+.colo{margin-top:34px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+
+@media (max-width:420px){
+  .stop{grid-template-columns:2.7rem 24px 1fr;gap:0 10px}
+  .badge{width:40px;height:40px;font-size:17px}
+  .dayhead h3{font-size:1.5rem}
+  .mt{padding:7px 11px;font-size:14.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="slug"><span class="code">TPE → PUS</span> 10.26 — 10.30 · 民樂洞 4 NIGHTS</p>
+    <h1>釜山五日</h1>
+    <svg class="bridge" viewBox="0 0 800 96" fill="none" aria-hidden="true" preserveAspectRatio="none">
+      <g stroke="currentColor" stroke-width="1" opacity=".55">
+        <path d="M60 43.8V62M120 35.7V62M180 27.5V62"/>
+        <path d="M325 33V62M400 38V62M475 33V62"/>
+        <path d="M620 27.5V62M680 35.7V62M740 43.8V62"/>
+      </g>
+      <path d="M0 52 L250 18 Q400 58 550 18 L800 52" stroke="currentColor" stroke-width="1.75"/>
+      <path d="M250 14V72M550 14V72" stroke="currentColor" stroke-width="2.5"/>
+      <path d="M0 62H800" stroke="currentColor" stroke-width="3"/>
+      <g class="lamp">
+        <circle cx="90" cy="57" r="2.4"/><circle cx="210" cy="57" r="2.4" opacity=".55"/>
+        <circle cx="360" cy="57" r="2.4"/><circle cx="440" cy="57" r="2.4" opacity=".5"/>
+        <circle cx="590" cy="57" r="2.4" opacity=".7"/><circle cx="710" cy="57" r="2.4"/>
+      </g>
+      <g class="water" stroke-width="1" opacity=".8">
+        <path d="M0 78H210M270 78H520M580 78H800"/>
+        <path d="M60 88H330M400 88H760" opacity=".5"/>
+      </g>
+    </svg>
+  </header>
+
+  <nav class="mainnav" role="tablist" aria-label="分類">
+    <button class="mt" role="tab" id="mt-info" aria-controls="s-info" aria-selected="true">資訊</button>
+    <button class="mt" role="tab" id="mt-plan" aria-controls="s-plan" aria-selected="false">行程</button>
+    <button class="mt" role="tab" id="mt-food" aria-controls="s-food" aria-selected="false">美食</button>
+  </nav>
+
+  <!-- ══════════ 資訊 ══════════ -->
+  <section class="sect" id="s-info" role="tabpanel" aria-labelledby="mt-info">
+    <h2 class="shd">航班</h2>
+    <div class="flights">
+
+      <article class="fl">
+        <div class="flhd">
+          <span class="flno">IT 606</span>
+          <span class="flmeta">台灣虎航 · Airbus A320／A320neo</span>
+          <span class="fldate">10.26 MON</span>
+        </div>
+        <div class="flroute">
+          <div class="ep">
+            <span class="code">TPE</span>
+            <span class="time">16:50</span>
+            <span class="place">桃園 第一航廈</span>
+            <span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E6%A9%9F%E5%A0%B4%E7%AC%AC%E4%B8%80%E8%88%AA%E5%BB%88" target="_blank" rel="noopener" title="Google Maps：桃園機場第一航廈">MAP</a></span>
+          </div>
+          <div class="arc"><span class="dur">2h 15m</span></div>
+          <div class="ep r">
+            <span class="code">PUS</span>
+            <span class="time">20:05</span>
+            <span class="place">金海國際機場</span>
+            <span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener" title="Google Maps：김해국제공항">MAP</a><a href="https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener" title="Naver 地圖：김해국제공항">NAVER</a></span>
+            <span class="tzchip">KST +1</span>
+          </div>
+        </div>
+        <ul class="flnotes">
+          <li>虎航在<strong>第一航廈</strong>，櫃檯人潮多，提前 3 小時、<strong>13:50 前到</strong>。</li>
+          <li>搭<strong>機捷</strong>到第一航廈站（A12）。台北車站直達車約 35 分鐘、普通車約 50 分鐘 —— 抓普通車的話 <strong>12:50 前上車</strong>。</li>
+          <li>可網路預辦登機，但要上傳護照；嫌麻煩就現場排托運。</li>
+          <li>韓國比台灣<strong>快 1 小時</strong>，落地後手機會自動跳。</li>
+          <li>出關約 21:00 → 輕軌轉地鐵到廣安約 60–70 分鐘，末班車趕得上。</li>
+        </ul>
+      </article>
+
+      <article class="fl">
+        <div class="flhd">
+          <span class="flno">IT 607</span>
+          <span class="flmeta">台灣虎航 · Airbus A320／A320neo</span>
+          <span class="fldate">10.30 FRI</span>
+        </div>
+        <div class="flroute">
+          <div class="ep">
+            <span class="code">PUS</span>
+            <span class="time">20:50</span>
+            <span class="place">金海國際機場</span>
+            <span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%84%A0" target="_blank" rel="noopener" title="Google Maps：김해국제공항 국제선">MAP</a><a href="https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%84%A0" target="_blank" rel="noopener" title="Naver 地圖：김해국제공항 국제선">NAVER</a></span>
+          </div>
+          <div class="arc"><span class="dur">2h 40m</span></div>
+          <div class="ep r">
+            <span class="code">TPE</span>
+            <span class="time">22:30</span>
+            <span class="place">桃園 第一航廈</span>
+            <span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E6%A9%9F%E5%A0%B4%E7%AC%AC%E4%B8%80%E8%88%AA%E5%BB%88" target="_blank" rel="noopener" title="Google Maps：桃園機場第一航廈">MAP</a></span>
+            <span class="tzchip">CST −1</span>
+          </div>
+        </div>
+        <ul class="flnotes">
+          <li>金海機場 <strong>1 樓入境、2 樓出境</strong>，搭電扶梯上去。3 樓是餐廳咖啡店，管制區內也有美食街。</li>
+          <li>抓 <strong>18:00 前到</strong>，先 check-in 再上樓吃晚餐，剛好把時間用完。</li>
+          <li>退稅櫃檯在 B24 旁邊，金額不多但不無小補。</li>
+          <li>從西面 17:30 出發，2 號線到沙上轉輕軌約 45 分鐘。</li>
+          <li>回程在出發地平均會晚 20–40 分鐘，抵達桃園約晚 10–20 分鐘，屬正常範圍。</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <h2 class="shd subhd">住宿</h2>
+    <div class="flights">
+      <article class="fl">
+        <div class="flhd">
+          <span class="flno">MILLAK</span>
+          <span class="flmeta">Airbnb · 房東 Kiri</span>
+          <span class="fldate">4 NIGHTS</span>
+        </div>
+        <div class="flroute">
+          <div class="ep">
+            <span class="code">IN</span>
+            <span class="time">16:00</span>
+            <span class="place">10/26 週一</span>
+          </div>
+          <div class="arc"><span class="dur">4 晚</span></div>
+          <div class="ep r">
+            <span class="code">OUT</span>
+            <span class="time">11:00</span>
+            <span class="place">10/30 週五</span>
+          </div>
+        </div>
+        <ul class="flnotes">
+          <li><strong>27 Millak-ro 34beon-gil</strong> 주택 2층 · 수영구 · 부산 48286</li>
+          <li>在<strong>民樂洞</strong>，廣安里沙灘的東端。走到沙灘約 10 分鐘、<strong>民樂水邊公園約 8 分鐘</strong> —— 10/28 晚上吃生魚片那站就在家門口。</li>
+          <li>廣安站和民樂站（2 號線）各約 13 分鐘腳程，兩邊差不多遠。往西面、南浦走廣安站；往 Centum City 走民樂站近一站。</li>
+          <li>透天的 2 樓，<strong>行李可能要自己搬上樓</strong>，打包時斟酌一下。</li>
+          <li class="w">班機 20:05 才落地，實際到門口約 22:00。出發前先跟 Kiri 要<strong>自助入住方式和門鎖密碼</strong>，不要當天才問。</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="notice">
+      <header><h3>出發前要訂</h3><span class="n">4</span></header>
+      <ul class="todo">
+        <li>
+          <input type="checkbox" id="bk-capsule">
+          <label for="bk-capsule">天空膠囊 10/27 約 15:00
+            <span class="why">藍線公園官網或 Klook，訂青沙浦往尾浦的方向。平日也常售完，訂不到就改搭海岸列車，票價低很多、景一樣。</span>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="bk-pass">
+          <label for="bk-pass">BIG3 Pass
+            <span class="why">Luge、X the SKY、松島纜車，180 天內用完不受時間限制。省的錢不多，先跟單買價各查一次再決定。</span>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="bk-haenyeo">
+          <label for="bk-haenyeo">出發前查影島海況
+            <span class="why">10/29 中午的海女村看海況營業，浪大就不開。沒開的話午餐改白淺灘文化村的海景咖啡廳。</span>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="bk-dept">
+          <label for="bk-dept">確認百貨公休日
+            <span class="why">樂天、新世界每月各有一天公休，通常是週一，兩家日期不一定相同。</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <h2 class="shd subhd">雜項</h2>
+    <div class="ngrid">
+      <div class="ni"><h4>天氣</h4><p>白天 18–20°C，入夜海邊風大剩 12–14°C。晚上在水邊公園或沙灘待著會冷，薄外套一定要帶。</p></div>
+      <div class="ni"><h4>錢</h4><p>機場先辦 WOWPASS。市區換錢所匯率比機場好一截，西面的老奶奶換錢所和樂天百貨都行，但那是最後一天才會到。</p></div>
+      <div class="ni"><h4>交通卡</h4><p>Cashbee 或 T-money。五天幾乎天天搭地鐵，逐次買票很麻煩；WOWPASS 實體卡本身也能當交通卡。</p></div>
+      <div class="ni"><h4>回家的路</h4><p>晚上從市區回民樂洞：南浦、西面走 2 號線到廣安站；海雲台、Centum City 走民樂站。兩站走回家都約 13 分鐘，買太多就從站口叫計程車。</p></div>
+      <div class="ni"><h4>觀光巴士 · 先記著</h4><p>三條循環線共用一張一日券，成人 ₩20,000、線上 ₩19,000，全部從釜山站發車。<strong>週一、週二停駛</strong>，10/28 之後才搭得到。這趟先不排，臨時想換再說。</p></div>
+      <div class="ni"><h4>綠線跟 10/29 幾乎重疊</h4><p>影島大橋、白淺灘、太宗台、松島、札嘎其都有停。但<strong>海女村不在線上</strong>，末班 16:20 也偏早，所以那天還是自己走。改主意的話這條線最順。</p></div>
+      <div class="ni"><h4>沒排甘川洞</h4><p>爬坡多、人潮多，跟這趟的調性不合，白淺灘已經涵蓋類似的海景聚落感。真想去的話橘線有停。</p></div>
+      <div class="ni"><h4>錯過的</h4><p>釜山煙火節是 11/7 —— 好處是廣安里房價不會被炒起來。無人機秀主要是週末場，平日多半碰不到。</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 行程 ══════════ -->
+  <section class="sect" id="s-plan" role="tabpanel" aria-labelledby="mt-plan" hidden>
+    <div class="lines" role="tablist" aria-label="行程日期">
+      <button class="ln dy" data-l="1" role="tab" id="t1" aria-controls="d1" aria-selected="true">
+        <span class="bar"></span><span class="dt">10.26 MON</span><span class="nm">抵達夜</span></button>
+      <button class="ln dy" data-l="2" role="tab" id="t2" aria-controls="d2" aria-selected="false">
+        <span class="bar"></span><span class="dt">10.27 TUE</span><span class="nm">海雲台海岸線</span></button>
+      <button class="ln dy" data-l="3" role="tab" id="t3" aria-controls="d3" aria-selected="false">
+        <span class="bar"></span><span class="dt">10.28 WED</span><span class="nm">新世界</span></button>
+      <button class="ln dy" data-l="4" role="tab" id="t4" aria-controls="d4" aria-selected="false">
+        <span class="bar"></span><span class="dt">10.29 THU</span><span class="nm">影島・南浦</span></button>
+      <button class="ln dy" data-l="5" role="tab" id="t5" aria-controls="d5" aria-selected="false">
+        <span class="bar"></span><span class="dt">10.30 FRI</span><span class="nm">西面・回程</span></button>
+    </div>
+
+    <div class="day" data-l="1" id="d1" role="tabpanel" aria-labelledby="t1">
+      <div class="dayhead">
+        <span class="badge">1</span>
+        <div><span class="stamp">10.26 MON</span><h3>抵達夜</h3></div>
+        <p class="gist">今晚不安排任何事。放下行李，去海邊坐著。</p>
+      </div>
+      <ul class="route">
+        <li class="stop"><div class="at">20:05</div><div class="rail"></div><div class="cell">
+          <div class="nm2">金海機場落地<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener" title="Google Maps：김해국제공항">MAP</a><a href="https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener" title="Naver 地圖：김해국제공항">NAVER</a></span></div>
+          <p class="tip">出關約 21:00。</p>
+        </div></li>
+        <li class="stop"><div class="at">21:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">機場 → 民樂洞<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AF%BC%EB%9D%BD%EB%A1%9C34%EB%B2%88%EA%B8%B8%2027%20%EC%88%98%EC%98%81%EA%B5%AC%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Google Maps：민락로34번길 27 수영구 부산">MAP</a><a href="https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EB%A1%9C34%EB%B2%88%EA%B8%B8%2027%20%EC%88%98%EC%98%81%EA%B5%AC%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Naver 地圖：민락로34번길 27 수영구 부산">NAVER</a></span></div>
+          <p class="tip"><strong>叫兩台計程車</strong>，直達門口約 40 分鐘、每台 ₩30,000–35,000。</p>
+          <p class="tip"><strong>輕軌轉 2 號線</strong>到廣安站約 70 分鐘，末班車趕得上，下車後再走 13 分鐘。</p>
+        </div></li>
+        <li class="stop key"><div class="at">22:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">民樂水邊公園・廣安里海邊<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AF%BC%EB%9D%BD%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener" title="Google Maps：민락수변공원">MAP</a><a href="https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener" title="Naver 地圖：민락수변공원">NAVER</a></span></div>
+          <p class="tip">放完行李走 8 分鐘就到水邊公園。這時間人已經散了，廣安大橋燈光完整。</p>
+          <p class="tip">便利商店買啤酒，手機叫外送到公園 —— 地上有編號區塊，本地人的標準吃法。</p>
+          <p class="warn">60계치킨 廣安店週一公休，今天剛好是週一，炸雞要叫別家。想吃熱的就走去 24 小時的豬肉湯飯。</p>
+          <a class="jump" href="#f5" data-sec="mt-food" data-tab="a5">廣安里・民樂洞有什麼<span class="ar">&rarr;</span></a>
+
+        </div></li>
+      </ul>
+    </div>
+
+    <div class="day" data-l="2" id="d2" role="tabpanel" aria-labelledby="t2" hidden>
+      <div class="dayhead">
+        <span class="badge">2</span>
+        <div><span class="stamp">10.27 TUE · 9:00 出門</span><h3>海雲台海岸線</h3></div>
+        <p class="gist">五天裡最滿的一天。從機張一路搭到海雲台，全程沿海，不回頭。早出門是為了卡 Luge 一開門的空檔。</p>
+      </div>
+      <ul class="route">
+        <li class="stop key"><div class="at">10:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">Skyline Luge<span class="tag pass">PASS</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%8A%A4%EC%B9%B4%EC%9D%B4%EB%9D%BC%EC%9D%B8%EB%A3%A8%EC%A7%80%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Google Maps：스카이라인루지 부산">MAP</a><a href="https://map.naver.com/p/search/%EC%8A%A4%EC%B9%B4%EC%9D%B4%EB%9D%BC%EC%9D%B8%EB%A3%A8%EC%A7%80%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Naver 地圖：스카이라인루지 부산">NAVER</a></span></div>
+          <p class="tip">10:00 開門，早到少排隊。網路買票較便宜，但仍要到櫃檯換票。搭吊椅上山，滑道有好幾條可選。</p>
+        </div></li>
+        <li class="stop key"><div class="at">11:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">海東龍宮寺<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EB%8F%99%EC%9A%A9%EA%B6%81%EC%82%AC" target="_blank" rel="noopener" title="Google Maps：해동용궁사">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EB%8F%99%EC%9A%A9%EA%B6%81%EC%82%AC" target="_blank" rel="noopener" title="Naver 地圖：해동용궁사">NAVER</a></span></div>
+          <p class="tip">就在 Luge 旁邊，直線不到 1 公里，走過去就到。蓋在海邊岩岸上的寺廟，韓國少見 —— 多數寺廟藏在山裡，這座正對東海。免費，4:00–20:00。</p>
+          <p class="tip">從停車場要走一段下坡階梯才到主殿，回程是上坡。</p>
+        </div></li>
+        <li class="stop eat"><div class="at">13:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">午餐</div>
+          <p class="tip">松亭站就是海岸列車的起點，從龍宮寺過來剛好接上。</p>
+          <a class="jump" href="#f3" data-sec="mt-food" data-tab="a3">松亭有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop"><div class="at">14:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">海岸列車 → 青沙浦<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EC%B2%AD%EC%82%AC%ED%8F%AC%EC%A0%95%EA%B1%B0%EC%9E%A5" target="_blank" rel="noopener" title="Google Maps：해운대블루라인파크 청사포정거장">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EC%B2%AD%EC%82%AC%ED%8F%AC%EC%A0%95%EA%B1%B0%EC%9E%A5" target="_blank" rel="noopener" title="Naver 地圖：해운대블루라인파크 청사포정거장">NAVER</a></span></div>
+          <p class="tip">沿海慢行，中途可下車。青沙浦有雙子燈塔和天空步道 —— 懸空玻璃地板，走一小段就好。Diart 的本店也在這裡。</p>
+        </div></li>
+        <li class="stop key"><div class="at">15:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">天空膠囊 → 尾浦<span class="tag bk">要先訂</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EB%AF%B8%ED%8F%AC%EC%A0%95%EA%B1%B0%EC%9E%A5" target="_blank" rel="noopener" title="Google Maps：해운대블루라인파크 미포정거장">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EB%AF%B8%ED%8F%AC%EC%A0%95%EA%B1%B0%EC%9E%A5" target="_blank" rel="noopener" title="Naver 地圖：해운대블루라인파크 미포정거장">NAVER</a></span></div>
+          <p class="tip">從青沙浦往尾浦搭，別搭反方向 —— 這段的海景最好。四人一車不併團，約 30 分鐘。</p>
+        </div></li>
+        <li class="stop"><div class="at">16:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">海雲台沙灘<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank" rel="noopener" title="Google Maps：해운대해수욕장">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank" rel="noopener" title="Naver 地圖：해운대해수욕장">NAVER</a></span></div>
+          <p class="tip">尾浦下車就是沙灘東端，可以沿著海邊一路走到西邊。</p>
+        </div></li>
+        <li class="stop key"><div class="at">17:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">BUSAN X the SKY<span class="tag pass">PASS</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%B6%80%EC%82%B0%EC%97%91%EC%8A%A4%EB%8D%94%EC%8A%A4%EC%B9%B4%EC%9D%B4" target="_blank" rel="noopener" title="Google Maps：부산엑스더스카이">MAP</a><a href="https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%EC%97%91%EC%8A%A4%EB%8D%94%EC%8A%A4%EC%B9%B4%EC%9D%B4" target="_blank" rel="noopener" title="Naver 地圖：부산엑스더스카이">NAVER</a></span></div>
+          <p class="tip">LCT 地標大樓 98–100 樓，411.6 公尺，韓國第二高。10 月底約 17:30 日落，提早上去可以同時收白天和夜景。99 樓有全世界最高的星巴克。</p>
+        </div></li>
+        <li class="stop eat"><div class="at">19:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">晚餐</div>
+          <p class="tip">海雲台傳統市場一帶，從 X the SKY 走過去約 10 分鐘。市場裡也買得到宵夜帶回廣安里。</p>
+          <a class="jump" href="#f1" data-sec="mt-food" data-tab="a1">海雲台有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+      </ul>
+    </div>
+
+    <div class="day" data-l="3" id="d3" role="tabpanel" aria-labelledby="t3" hidden>
+      <div class="dayhead">
+        <span class="badge">3</span>
+        <div><span class="stamp">10.28 WED · 11:00 出門</span><h3>新世界</h3></div>
+        <p class="gist">昨天走滿了，今天一站到底，晚上早點回家。下雨也不受影響。</p>
+      </div>
+      <ul class="route">
+        <li class="stop eat"><div class="at">11:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">早午餐</div>
+          <p class="tip">起得晚的日子，先在海雲台吃一頓再往 Centum City 移動。</p>
+          <a class="jump" href="#f1" data-sec="mt-food" data-tab="a1">海雲台有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop key"><div class="at">13:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">新世界百貨 Centum City<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%8B%A0%EC%84%B8%EA%B3%84%EB%B0%B1%ED%99%94%EC%A0%90%20%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：신세계백화점 센텀시티점">MAP</a><a href="https://map.naver.com/p/search/%EC%8B%A0%EC%84%B8%EA%B3%84%EB%B0%B1%ED%99%94%EC%A0%90%20%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：신세계백화점 센텀시티점">NAVER</a></span></div>
+          <p class="tip">金氏世界紀錄的全球最大百貨。廣安站搭 2 號線三站就到，平日 10:30–20:00。</p>
+          <p class="warn">退稅櫃檯比營業時間早收，下午就先去辦掉。</p>
+        </div></li>
+        <li class="stop eat"><div class="at">19:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">晚餐</div>
+          <p class="tip">從住的地方走 8 分鐘就到，是這趟最不用移動的一餐。</p>
+          <a class="jump" href="#f5" data-sec="mt-food" data-tab="a5">廣安里・民樂洞有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop"><div class="at">21:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">走回民樂洞<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AF%BC%EB%9D%BD%EB%A1%9C34%EB%B2%88%EA%B8%B8%2027%20%EC%88%98%EC%98%81%EA%B5%AC%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Google Maps：민락로34번길 27 수영구 부산">MAP</a><a href="https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EB%A1%9C34%EB%B2%88%EA%B8%B8%2027%20%EC%88%98%EC%98%81%EA%B5%AC%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Naver 地圖：민락로34번길 27 수영구 부산">NAVER</a></span></div>
+          <p class="tip">從水邊公園散步回去 8 分鐘。這天刻意留白，明天要早起趕綠線。</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <div class="day" data-l="4" id="d4" role="tabpanel" aria-labelledby="t4" hidden>
+      <div class="dayhead">
+        <span class="badge">4</span>
+        <div><span class="stamp">10.29 THU · 11:00 出門</span><h3>影島・南浦</h3></div>
+        <p class="gist">由東往西走，最後停在南浦洞採買。這天點跟點之間都直接叫車，不轉公車地鐵。</p>
+      </div>
+      <ul class="route">
+        <li class="stop eat"><div class="at">12:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">午餐<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%98%81%EB%8F%84%20%ED%95%B4%EB%85%80%EC%B4%8C" target="_blank" rel="noopener" title="Google Maps：영도 해녀촌">MAP</a><a href="https://map.naver.com/p/search/%EC%98%81%EB%8F%84%20%ED%95%B4%EB%85%80%EC%B4%8C" target="_blank" rel="noopener" title="Naver 地圖：영도 해녀촌">NAVER</a></span></div>
+          <p class="tip">影島海女村在東三洞。從民樂洞直接叫車約 30 分鐘。</p>
+          <p class="warn">看天氣和海況營業，浪大就不開。出發前一兩天查一下，沒開就直接去白淺灘。</p>
+          <a class="jump" href="#f6" data-sec="mt-food" data-tab="a6">影島有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop key"><div class="at">13:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">白淺灘文化村<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener" title="Google Maps：흰여울문화마을">MAP</a><a href="https://map.naver.com/p/search/%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener" title="Naver 地圖：흰여울문화마을">NAVER</a></span></div>
+          <p class="tip">從海女村叫車約 15 分鐘。懸崖邊的老聚落，幾乎每間房子都改成海景咖啡廳，比甘川洞人少很多、坡也緩。吃飽了進來喝一杯剛好。</p>
+        </div></li>
+        <li class="stop key"><div class="at">14:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">松島海上纜車<span class="tag pass">PASS</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%86%A1%EB%8F%84%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4" target="_blank" rel="noopener" title="Google Maps：송도해상케이블카">MAP</a><a href="https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4" target="_blank" rel="noopener" title="Naver 地圖：송도해상케이블카">NAVER</a></span></div>
+          <p class="tip">從白淺灘叫車約 20 分鐘。買來回票，對岸是松島天空公園（9:00–20:00），有觀景台和小王子雕像。</p>
+        </div></li>
+        <li class="stop"><div class="at">15:15</div><div class="rail"></div><div class="cell">
+          <div class="nm2">松島龍宮雲橋<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%86%A1%EB%8F%84%EC%9A%A9%EA%B6%81%EA%B5%AC%EB%A6%84%EB%8B%A4%EB%A6%AC" target="_blank" rel="noopener" title="Google Maps：송도용궁구름다리">MAP</a><a href="https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%EC%9A%A9%EA%B6%81%EA%B5%AC%EB%A6%84%EB%8B%A4%EB%A6%AC" target="_blank" rel="noopener" title="Naver 地圖：송도용궁구름다리">NAVER</a></span></div>
+          <p class="tip">纜車對岸那站走過去，127 公尺長、離海面 25 公尺，從岩南公園接到東섬小島。門票 ₩1,000，下車跟著指標走會看到小售票亭。</p>
+          <p class="warn">9:00–17:30 關門，比纜車早很多。一趟纜車把公園和雲橋一起走完再下山。</p>
+        </div></li>
+        <li class="stop eat"><div class="at">16:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">南浦洞・國際市場・BIFF<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B5%AD%EC%A0%9C%EC%8B%9C%EC%9E%A5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Google Maps：국제시장 부산">MAP</a><a href="https://map.naver.com/p/search/%EA%B5%AD%EC%A0%9C%EC%8B%9C%EC%9E%A5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener" title="Naver 地圖：국제시장 부산">NAVER</a></span></div>
+          <p class="tip">從松島叫車約 15 分鐘。國際市場和 BIFF 廣場連在一起，鑽進去亂逛就對了。龍頭山公園和釜山塔就在市場上方，想看黃昏再走上去。</p>
+          <a class="jump" href="#f8" data-sec="mt-food" data-tab="a8">南浦洞有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop key"><div class="at">17:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">Olive Young 南浦 Town 店<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%82%A8%ED%8F%AC%ED%83%80%EC%9A%B4%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：올리브영 남포타운점">MAP</a><a href="https://map.naver.com/p/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%82%A8%ED%8F%AC%ED%83%80%EC%9A%B4%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：올리브영 남포타운점">NAVER</a></span></div>
+          <p class="tip">9/28 才開，四層樓 900 平方公尺，<strong>首都圈以外最大的一家</strong>。對標明洞旗艦店：有美妝顧問做膚質檢測、Advanced Derma 專區和面膜圖書館，整家店照外國客的動線設計。10:00–22:30。</p>
+          <p class="tip">BIFF 廣場旁還有一家光復店，評論提到<strong>外國人可現場退稅</strong>，帶護照就好。結帳前先問南浦店有沒有，沒有就去那邊結。</p>
+        </div></li>
+        <li class="stop"><div class="at">19:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">樂天超市 光復店<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%20%EA%B4%91%EB%B3%B5%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：롯데마트 광복점">MAP</a><a href="https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%20%EA%B4%91%EB%B3%B5%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：롯데마트 광복점">NAVER</a></span></div>
+          <p class="tip">營業到 23:00，2F 可退稅、記得帶護照。伴手禮一次掃完 —— 東西多就從門口叫車回民樂洞。</p>
+        </div></li>
+      </ul>
+    </div>
+
+    <div class="day" data-l="5" id="d5" role="tabpanel" aria-labelledby="t5" hidden>
+      <div class="dayhead">
+        <span class="badge">5</span>
+        <div><span class="stamp">10.30 FRI · 11:00 退房</span><h3>西面・回程</h3></div>
+        <p class="gist">西面剛好在往機場的路上。行李直接寄這裡，不用再回廣安里，省下約 40 分鐘。</p>
+      </div>
+      <ul class="route">
+        <li class="stop"><div class="at">11:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">退房 → 西面站寄行李<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%84%9C%EB%A9%B4%EC%97%AD" target="_blank" rel="noopener" title="Google Maps：서면역">MAP</a><a href="https://map.naver.com/p/search/%EC%84%9C%EB%A9%B4%EC%97%AD" target="_blank" rel="noopener" title="Naver 地圖：서면역">NAVER</a></span></div>
+          <p class="tip">退房時間正好 11:00。走到廣安站 13 分鐘、行李多就叫車，2 號線直達西面約 25 分鐘。站內有置物櫃，客滿就改用行李寄放服務。</p>
+        </div></li>
+        <li class="stop key"><div class="at">11:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">午餐<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%BC%EC%9E%90%20%EC%84%9C%EB%A9%B4%EC%A4%91%EC%95%99%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：이재모피자 서면중앙점">MAP</a><a href="https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%BC%EC%9E%90%20%EC%84%9C%EB%A9%B4%EC%A4%91%EC%95%99%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：이재모피자 서면중앙점">NAVER</a></span></div>
+          <p class="tip">先到店登記候位，再去逛街。平日約 40 分鐘起跳，旺季週末曾排到 5 小時。有 CatchTable 遠端候位，但人太多時會提早截止。</p>
+          <a class="jump" href="#f9" data-sec="mt-food" data-tab="a9">西面有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop eat"><div class="at">14:00</div><div class="rail"></div><div class="cell">
+          <div class="nm2">下午<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%A0%84%ED%8F%AC%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener" title="Google Maps：전포카페거리">MAP</a><a href="https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener" title="Naver 地圖：전포카페거리">NAVER</a></span></div>
+          <p class="tip">田浦咖啡街從西面走路 10 分鐘。咖啡廳、選物店、拍貼機密度極高，釜山年輕人的地盤。週五下午人不算多。</p>
+          <a class="jump" href="#f10" data-sec="mt-food" data-tab="a10">田浦有什麼<span class="ar">&rarr;</span></a>
+        </div></li>
+        <li class="stop"><div class="at">17:30</div><div class="rail"></div><div class="cell">
+          <div class="nm2">西面 → 金海機場<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener" title="Google Maps：김해국제공항">MAP</a><a href="https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener" title="Naver 地圖：김해국제공항">NAVER</a></span></div>
+          <p class="tip">2 號線到沙上轉輕軌，約 45 分鐘。時間很充裕。</p>
+        </div></li>
+        <li class="stop key"><div class="at">20:50</div><div class="rail"></div><div class="cell">
+          <div class="nm2">IT607 起飛<span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%84%A0" target="_blank" rel="noopener" title="Google Maps：김해국제공항 국제선">MAP</a><a href="https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%84%A0" target="_blank" rel="noopener" title="Naver 地圖：김해국제공항 국제선">NAVER</a></span></div>
+          <p class="tip">22:30 回到桃園。</p>
+        </div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ 美食 ══════════ -->
+  <section class="sect" id="s-food" role="tabpanel" aria-labelledby="mt-food" hidden>
+    <div class="lines" role="tablist" aria-label="美食區域">
+      <button class="ln ar" data-l="2" role="tab" id="a1" aria-controls="f1" aria-selected="true">
+        <span class="bar"></span><span class="dt">D2 · D3</span><span class="nm">海雲台</span></button>
+      <button class="ln ar" data-l="2" role="tab" id="a2" aria-controls="f2" aria-selected="false">
+        <span class="bar"></span><span class="dt">D2 · D3</span><span class="nm">尾浦・迎月路</span></button>
+      <button class="ln ar" data-l="2" role="tab" id="a3" aria-controls="f3" aria-selected="false">
+        <span class="bar"></span><span class="dt">D2</span><span class="nm">松亭</span></button>
+      <button class="ln ar" data-l="2" role="tab" id="a4" aria-controls="f4" aria-selected="false">
+        <span class="bar"></span><span class="dt">D2</span><span class="nm">青沙浦</span></button>
+      <button class="ln ar" data-l="1" role="tab" id="a5" aria-controls="f5" aria-selected="false">
+        <span class="bar"></span><span class="dt">D1 · D3</span><span class="nm">廣安里・民樂洞</span></button>
+      <button class="ln ar" data-l="4" role="tab" id="a6" aria-controls="f6" aria-selected="false">
+        <span class="bar"></span><span class="dt">D4</span><span class="nm">影島</span></button>
+      <button class="ln ar" data-l="4" role="tab" id="a7" aria-controls="f7" aria-selected="false">
+        <span class="bar"></span><span class="dt">D4</span><span class="nm">松島</span></button>
+      <button class="ln ar" data-l="4" role="tab" id="a8" aria-controls="f8" aria-selected="false">
+        <span class="bar"></span><span class="dt">D4</span><span class="nm">南浦洞</span></button>
+      <button class="ln ar" data-l="5" role="tab" id="a9" aria-controls="f9" aria-selected="false">
+        <span class="bar"></span><span class="dt">D5</span><span class="nm">西面</span></button>
+      <button class="ln ar" data-l="5" role="tab" id="a10" aria-controls="f10" aria-selected="false">
+        <span class="bar"></span><span class="dt">D5</span><span class="nm">田浦</span></button>
+    </div>
+
+    <div class="area" data-l="2" id="f1" role="tabpanel" aria-labelledby="a1">
+      <div class="areahd"><span class="dot"></span><h3>海雲台</h3><span class="cnt">7 家</span>
+        <p class="where">海雲台站到傳統市場、海邊路這一帶，吃的密度最高。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">元祖奶奶牛肉湯飯</span><span class="kr">원조할매국밥</span><span class="kind">湯飯</span><span class="slot">D3 早午餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EC%9A%B4%EB%8C%80%20%EC%9B%90%EC%A1%B0%ED%95%A0%EB%A7%A4%EA%B5%AD%EB%B0%A5" target="_blank" rel="noopener" title="Google Maps：해운대 원조할매국밥">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%20%EC%9B%90%EC%A1%B0%ED%95%A0%EB%A7%A4%EA%B5%AD%EB%B0%A5" target="_blank" rel="noopener" title="Naver 地圖：해운대 원조할매국밥">NAVER</a></span></div>
+            <p class="note">海雲台的老字號湯飯，起得晚的日子最順。</p></li>
+          <li><div class="top"><span class="fn">伍班長海景烤肉</span><span class="kr">오반장</span><span class="kind">烤肉</span><span class="slot">D2 晚餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EC%9A%B4%EB%8C%80%20%EC%98%A4%EB%B0%98%EC%9E%A5" target="_blank" rel="noopener" title="Google Maps：해운대 오반장">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%20%EC%98%A4%EB%B0%98%EC%9E%A5" target="_blank" rel="noopener" title="Naver 地圖：해운대 오반장">NAVER</a></span></div>
+            <p class="note">海景位的烤肉店，想吃肉就選這家。</p></li>
+          <li><div class="top"><span class="fn">啵啵通닭</span><span class="kr">뽀뽀통닭</span><span class="kind">炸雞</span><span class="slot">D2 宵夜</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%BD%80%EB%BD%80%ED%86%B5%EB%8B%AD%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Google Maps：뽀뽀통닭 해운대">MAP</a><a href="https://map.naver.com/p/search/%EB%BD%80%EB%BD%80%ED%86%B5%EB%8B%AD%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Naver 地圖：뽀뽀통닭 해운대">NAVER</a></span></div>
+            <p class="note">海雲台傳統市場內，十年老字號，走傳統路線。招牌原味帶回廣安里配啤酒。</p></li>
+          <li><div class="top"><span class="fn">釜飯 solsot</span><span class="kr">솔솥</span><span class="kind">釜飯</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%86%94%EC%86%A5%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Google Maps：솔솥 해운대">MAP</a><a href="https://map.naver.com/p/search/%EC%86%94%EC%86%A5%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Naver 地圖：솔솥 해운대">NAVER</a></span></div>
+            <p class="note">海雲台站 4 號出口步行約 100 公尺。每款釜飯都附專屬吃法教學，儀式感拉滿。</p></li>
+          <li><div class="top"><span class="fn">錦秀河豚</span><span class="kr">금수복국</span><span class="kind">河豚</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B8%88%EC%88%98%EB%B3%B5%EA%B5%AD%20%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：금수복국 해운대점">MAP</a><a href="https://map.naver.com/p/search/%EA%B8%88%EC%88%98%EB%B3%B5%EA%B5%AD%20%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：금수복국 해운대점">NAVER</a></span></div>
+            <p class="note">米其林河豚料理，在海雲台海邊路上。</p></li>
+          <li><div class="top"><span class="fn">常客客人</span><span class="kr">단골손님</span><span class="kind">拌飯</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%8B%A8%EA%B3%A8%EC%86%90%EB%8B%98%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Google Maps：단골손님 해운대">MAP</a><a href="https://map.naver.com/p/search/%EB%8B%A8%EA%B3%A8%EC%86%90%EB%8B%98%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Naver 地圖：단골손님 해운대">NAVER</a></span></div>
+            <p class="note">生牛肉＋毛蟹拌飯雙拼是招牌，一口火鍋意外驚豔。</p></li>
+          <li><div class="top"><span class="fn">草梁小麥麵</span><span class="kr">초량밀면</span><span class="kind">冷麵</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%B4%88%EB%9F%89%EB%B0%80%EB%A9%B4%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Google Maps：초량밀면 해운대">MAP</a><a href="https://map.naver.com/p/search/%EC%B4%88%EB%9F%89%EB%B0%80%EB%A9%B4%20%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" rel="noopener" title="Naver 地圖：초량밀면 해운대">NAVER</a></span></div>
+            <p class="note">釜山限定的小麥冷麵，海雲台也有分店。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="2" id="f2" role="tabpanel" aria-labelledby="a2" hidden>
+      <div class="areahd"><span class="dot"></span><h3>尾浦・迎月路</h3><span class="cnt">2 家</span>
+        <p class="where">海雲台沙灘東端往上的山坡，天空膠囊的終點站就在這裡。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">尾浦家生醃</span><span class="kr">미포끝집</span><span class="kind">生醃</span><span class="slot">D2 晚餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AF%B8%ED%8F%AC%EB%81%9D%EC%A7%91" target="_blank" rel="noopener" title="Google Maps：미포끝집">MAP</a><a href="https://map.naver.com/p/search/%EB%AF%B8%ED%8F%AC%EB%81%9D%EC%A7%91" target="_blank" rel="noopener" title="Naver 地圖：미포끝집">NAVER</a></span></div>
+            <p class="note">釜山共三家分店，這家海景視野最好。天空膠囊下車走過去就到。</p></li>
+          <li><div class="top"><span class="fn">瓦房鱈魚湯</span><span class="kr">기와집 대구탕</span><span class="kind">鱈魚湯</span><span class="slot">D3 早午餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%95%B4%EC%9A%B4%EB%8C%80%20%EA%B8%B0%EC%99%80%EC%A7%91%20%EB%8C%80%EA%B5%AC%ED%83%95" target="_blank" rel="noopener" title="Google Maps：해운대 기와집 대구탕">MAP</a><a href="https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%20%EA%B8%B0%EC%99%80%EC%A7%91%20%EB%8C%80%EA%B5%AC%ED%83%95" target="_blank" rel="noopener" title="Naver 地圖：해운대 기와집 대구탕">NAVER</a></span></div>
+            <p class="note">迎月路半山腰的韓屋老店，窗外就是海。全店只賣一樣「大塊鱈魚湯」，魚肉厚實、湯頭極鮮，當地的解酒早餐天花板。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="2" id="f3" role="tabpanel" aria-labelledby="a3" hidden>
+      <div class="areahd"><span class="dot"></span><h3>松亭</h3><span class="cnt">1 家</span>
+        <p class="where">海岸列車的起點，也是離 Luge 最近的一站。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">松亭 31cm 海鮮刀削麵</span><span class="kind">刀削麵</span><span class="slot">D2 午餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%86%A1%EC%A0%95%2031cm%20%ED%95%B4%EB%AC%BC%EC%B9%BC%EA%B5%AD%EC%88%98" target="_blank" rel="noopener" title="Google Maps：송정 31cm 해물칼국수">MAP</a><a href="https://map.naver.com/p/search/%EC%86%A1%EC%A0%95%2031cm%20%ED%95%B4%EB%AC%BC%EC%B9%BC%EA%B5%AD%EC%88%98" target="_blank" rel="noopener" title="Naver 地圖：송정 31cm 해물칼국수">NAVER</a></span></div>
+            <p class="note">海鮮鮮甜、份量大。Luge 玩完搭車過來剛好接上午餐。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="2" id="f4" role="tabpanel" aria-labelledby="a4" hidden>
+      <div class="areahd"><span class="dot"></span><h3>青沙浦</h3><span class="cnt">2 家</span>
+        <p class="where">海岸列車中段的漁村，雙子燈塔和天空步道都在這。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">青沙浦烤貝類一條街</span><span class="kind">海鮮</span><span class="slot alt">看時間</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%B2%AD%EC%82%AC%ED%8F%AC%20%EC%A1%B0%EA%B0%9C%EA%B5%AC%EC%9D%B4" target="_blank" rel="noopener" title="Google Maps：청사포 조개구이">MAP</a><a href="https://map.naver.com/p/search/%EC%B2%AD%EC%82%AC%ED%8F%AC%20%EC%A1%B0%EA%B0%9C%EA%B5%AC%EC%9D%B4" target="_blank" rel="noopener" title="Naver 地圖：청사포 조개구이">NAVER</a></span></div>
+            <p class="note">海邊一整排店，現烤現吃。中午已經吃過刀削麵的話就跳過。</p></li>
+          <li><div class="top"><span class="fn">海景咖啡廳</span><span class="kind">咖啡</span><span class="slot">D2 下午</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%B2%AD%EC%82%AC%ED%8F%AC%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener" title="Google Maps：청사포 카페">MAP</a><a href="https://map.naver.com/p/search/%EC%B2%AD%EC%82%AC%ED%8F%AC%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener" title="Naver 地圖：청사포 카페">NAVER</a></span></div>
+            <p class="note">天空步道走完進來坐，等天空膠囊的時間剛好用掉。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="1" id="f5" role="tabpanel" aria-labelledby="a5" hidden>
+      <div class="areahd"><span class="dot"></span><h3>廣安里・民樂洞</h3><span class="cnt">9 家</span>
+        <p class="where">住的地方就在民樂洞，這區大多走路或幾分鐘車程就到。豬肉湯飯有兩家 24 小時的。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">民樂水邊公園生魚片市場</span><span class="kind">生魚片</span><span class="slot">D3 晚餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AF%BC%EB%9D%BD%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90%20%ED%9A%8C%EC%84%BC%ED%84%B0" target="_blank" rel="noopener" title="Google Maps：민락수변공원 회센터">MAP</a><a href="https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90%20%ED%9A%8C%EC%84%BC%ED%84%B0" target="_blank" rel="noopener" title="Naver 地圖：민락수변공원 회센터">NAVER</a></span></div>
+            <p class="note">走路 8 分鐘就到，看廣安大橋最好的角度。樓下挑魚、樓上代客料理，地上有編號區塊方便叫外送。</p></li>
+          <li><div class="top"><span class="fn">水邊最好豬肉湯飯</span><span class="kr">수변최고돼지국밥</span><span class="kind">湯飯</span><span class="slot alt">24H</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%88%98%EB%B3%80%EC%B5%9C%EA%B3%A0%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EB%AF%BC%EB%9D%BD%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：수변최고돼지국밥 민락본점">MAP</a><a href="https://map.naver.com/p/search/%EC%88%98%EB%B3%80%EC%B5%9C%EA%B3%A0%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EB%AF%BC%EB%9D%BD%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：수변최고돼지국밥 민락본점">NAVER</a></span></div>
+            <p class="note">民樂洞本店，24 小時。4.4 分、2,289 則評論，排隊的幾乎都是本地人，味道比較濃。走路約 13 分鐘，尖峰要等一小時，深夜或一大早最不用等。官網頁面寫「每週三公休」但 Google 標 24 小時 —— 去之前查一下。</p></li>
+          <li><div class="top"><span class="fn">釜山土泊伊豬肉湯飯</span><span class="kr">부산토박이돼지국밥</span><span class="kind">湯飯</span><span class="slot">D1 宵夜</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%B6%80%EC%82%B0%ED%86%A0%EB%B0%95%EC%9D%B4%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EA%B4%91%EC%95%88%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：부산토박이돼지국밥 광안본점">MAP</a><a href="https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%ED%86%A0%EB%B0%95%EC%9D%B4%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EA%B4%91%EC%95%88%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：부산토박이돼지국밥 광안본점">NAVER</a></span></div>
+            <p class="note">廣安本店在光安路 64，離沙灘一分鐘。<strong>走路約 8 分鐘，是兩家裡最近的</strong>。販賣機點餐有中英文，小菜自助吃到飽。湯頭乾淨、豬腥味不重，怕腥的反而合。</p></li>
+          <li><div class="top"><span class="fn">趙趙刀削麵</span><span class="kr">조조칼국수</span><span class="kind">刀削麵</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%A1%B0%EC%A1%B0%EC%B9%BC%EA%B5%AD%EC%88%98%20%EA%B4%91%EC%95%88%EB%A6%AC%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：조조칼국수 광안리점">MAP</a><a href="https://map.naver.com/p/search/%EC%A1%B0%EC%A1%B0%EC%B9%BC%EA%B5%AD%EC%88%98%20%EA%B4%91%EC%95%88%EB%A6%AC%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：조조칼국수 광안리점">NAVER</a></span></div>
+            <p class="note">4.8 分、101 則，這批裡評價最高。招牌是海瓜子刀削麵和海鮮煎餅，店裡看得到沙灘。在 Ocean Bridge 一樓，走路十分鐘內。</p></li>
+          <li><div class="top"><span class="fn">All Sunday Gwangan</span><span class="kr">올선데이</span><span class="kind">貝果</span><span class="slot alt">早餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88" target="_blank" rel="noopener" title="Google Maps：올선데이 광안">MAP</a><a href="https://map.naver.com/p/search/%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88" target="_blank" rel="noopener" title="Naver 地圖：올선데이 광안">NAVER</a></span></div>
+            <p class="note">8:00 開到 22:00，就在廣安里沙灘對面。藍莓和洋蔥口味最多人推。韓式貝果偏軟，不是美式那種紮實嚼勁。</p></li>
+          <li><div class="top"><span class="fn">60계치킨 廣安店</span><span class="kr">60계치킨</span><span class="kind">炸雞</span><span class="slot alt">週一休</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=60%EA%B3%84%EC%B9%98%ED%82%A8%20%EB%B6%80%EC%82%B0%EA%B4%91%EC%95%88%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：60계치킨 부산광안점">MAP</a><a href="https://map.naver.com/p/search/60%EA%B3%84%EC%B9%98%ED%82%A8%20%EB%B6%80%EC%82%B0%EA%B4%91%EC%95%88%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：60계치킨 부산광안점">NAVER</a></span></div>
+            <p class="note">外帶是一整隻，附醃蘿蔔和飲料。平日 15:30 才開、週一公休 —— 10/26 抵達那天剛好是週一，宵夜炸雞要換別家叫。</p></li>
+          <li><div class="top"><span class="fn">Millac The Market</span><span class="kr">민락더마켓</span><span class="kind">市集</span><span class="slot alt">隨時</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AF%BC%EB%9D%BD%EB%8D%94%EB%A7%88%EC%BC%93" target="_blank" rel="noopener" title="Google Maps：민락더마켓">MAP</a><a href="https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EB%8D%94%EB%A7%88%EC%BC%93" target="_blank" rel="noopener" title="Naver 地圖：민락더마켓">NAVER</a></span></div>
+            <p class="note">海邊的市集商場，10:00 開到半夜 12 點，離你住的地方最近。後方玻璃落地窗正對廣安大橋。裡面有 <strong>9/30 新開的 Olive Young 民樂 The Market 店</strong>：港口主題裝潢、Olive Young 第一家有冷凍櫃的店，開到 23:00。</p></li>
+          <li><div class="top"><span class="fn">사랑빵 Salangppang</span><span class="kr">사랑빵</span><span class="kind">醬蟹</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%82%AC%EB%9E%91%EB%B9%B5%20%EB%82%A8%EC%B2%9C%EB%8F%99" target="_blank" rel="noopener" title="Google Maps：사랑빵 남천동">MAP</a><a href="https://map.naver.com/p/search/%EC%82%AC%EB%9E%91%EB%B9%B5%20%EB%82%A8%EC%B2%9C%EB%8F%99" target="_blank" rel="noopener" title="Naver 地圖：사랑빵 남천동">NAVER</a></span></div>
+            <p class="note">名字叫麵包但其實是海鮮酒館，招牌醬蟹和醃蝦。17:00 開到凌晨 1 點，適合當宵夜。在南川洞，要搭車，而且常要等位。</p></li>
+          <li><div class="top"><span class="fn">海邊第一排咖啡廳</span><span class="kind">咖啡</span><span class="slot alt">隨時</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B4%91%EC%95%88%EB%A6%AC%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener" title="Google Maps：광안리 카페">MAP</a><a href="https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener" title="Naver 地圖：광안리 카페">NAVER</a></span></div>
+            <p class="note">廣安海邊路整排，落地窗正對大橋。住這區的好處就是隨時能下樓坐一下。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="4" id="f6" role="tabpanel" aria-labelledby="a6" hidden>
+      <div class="areahd"><span class="dot"></span><h3>影島</h3><span class="cnt">2 家</span>
+        <p class="where">過影島大橋後的半島，海女村在東端、白淺灘在西側懸崖。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">影島海女村</span><span class="kind">海鮮</span><span class="slot">D4 午餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%98%81%EB%8F%84%20%ED%95%B4%EB%85%80%EC%B4%8C" target="_blank" rel="noopener" title="Google Maps：영도 해녀촌">MAP</a><a href="https://map.naver.com/p/search/%EC%98%81%EB%8F%84%20%ED%95%B4%EB%85%80%EC%B4%8C" target="_blank" rel="noopener" title="Naver 地圖：영도 해녀촌">NAVER</a></span></div>
+            <p class="note">海女現撈，淡菜必點，可外帶到旁邊岩石上吃。在東三洞，從市區過去要轉公車或叫車。看海況營業、浪大不開，出發前查一下。</p></li>
+          <li><div class="top"><span class="fn">白淺灘海景咖啡廳</span><span class="kind">咖啡</span><span class="slot">D4 下午</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener" title="Google Maps：흰여울문화마을 카페">MAP</a><a href="https://map.naver.com/p/search/%ED%9D%B0%EC%97%AC%EC%9A%B8%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener" title="Naver 地圖：흰여울문화마을 카페">NAVER</a></span></div>
+            <p class="note">懸崖邊的老房子幾乎都改成咖啡廳。吃飽了回程順路進來喝一杯；海女村沒開的話，午餐也改在這裡。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="4" id="f7" role="tabpanel" aria-labelledby="a7" hidden>
+      <div class="areahd"><span class="dot"></span><h3>松島</h3><span class="cnt">1 家</span>
+        <p class="where">韓國第一座公共海水浴場，海上纜車的下站在這。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">松島布帳馬車</span><span class="kind">海鮮</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%86%A1%EB%8F%84%20%ED%8F%AC%EC%9E%A5%EB%A7%88%EC%B0%A8%EC%B4%8C" target="_blank" rel="noopener" title="Google Maps：송도 포장마차촌">MAP</a><a href="https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%20%ED%8F%AC%EC%9E%A5%EB%A7%88%EC%B0%A8%EC%B4%8C" target="_blank" rel="noopener" title="Naver 地圖：송도 포장마차촌">NAVER</a></span></div>
+            <p class="note">海鮮大爆滿，但主要是晚上營業。那天傍晚已經往南浦走了，順路才去。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="4" id="f8" role="tabpanel" aria-labelledby="a8" hidden>
+      <div class="areahd"><span class="dot"></span><h3>南浦洞</h3><span class="cnt">2 家</span>
+        <p class="where">國際市場、富平罐頭市場、BIFF 廣場連成一片，Olive Young 南浦 Town 店也在這。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">BIFF 元祖種子糖餅</span><span class="kind">糖餅</span><span class="slot">D4 邊走邊吃</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=BIFF%EA%B4%91%EC%9E%A5%20%EC%94%A8%EC%95%97%ED%98%B8%EB%96%A1" target="_blank" rel="noopener" title="Google Maps：BIFF광장 씨앗호떡">MAP</a><a href="https://map.naver.com/p/search/BIFF%EA%B4%91%EC%9E%A5%20%EC%94%A8%EC%95%97%ED%98%B8%EB%96%A1" target="_blank" rel="noopener" title="Naver 地圖：BIFF광장 씨앗호떡">NAVER</a></span></div>
+            <p class="note">堅果口味最推，BIFF 廣場上排隊最長的那攤。</p></li>
+          <li><div class="top"><span class="fn">小麥冷麵</span><span class="kr">밀면</span><span class="kind">冷麵</span><span class="slot">D4 邊走邊吃</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EA%B5%AD%EC%A0%9C%EC%8B%9C%EC%9E%A5%20%EB%B0%80%EB%A9%B4" target="_blank" rel="noopener" title="Google Maps：국제시장 밀면">MAP</a><a href="https://map.naver.com/p/search/%EA%B5%AD%EC%A0%9C%EC%8B%9C%EC%9E%A5%20%EB%B0%80%EB%A9%B4" target="_blank" rel="noopener" title="Naver 地圖：국제시장 밀면">NAVER</a></span></div>
+            <p class="note">釜山限定，國際市場內就有，配一份餃子剛好。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="5" id="f9" role="tabpanel" aria-labelledby="a9" hidden>
+      <div class="areahd"><span class="dot"></span><h3>西面</h3><span class="cnt">4 家</span>
+        <p class="where">最後一天的主場，行李也寄在這一站。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">李在模披薩</span><span class="kr">이재모피자</span><span class="kind">披薩</span><span class="slot">D5 午餐</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%BC%EC%9E%90%20%EC%A0%84%ED%8F%AC%EC%A0%90" target="_blank" rel="noopener" title="Google Maps：이재모피자 전포점">MAP</a><a href="https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%BC%EC%9E%90%20%EC%A0%84%ED%8F%AC%EC%A0%90" target="_blank" rel="noopener" title="Naver 地圖：이재모피자 전포점">NAVER</a></span></div>
+            <p class="note">西面中央店，田浦也有一家。先登記候位再去逛街 —— 平日約 40 分鐘起跳，旺季週末曾排到 5 小時。10:00–21:10、最後點餐 20:30，週日公休。</p></li>
+          <li><div class="top"><span class="fn">釜山宅烤肉</span><span class="kind">烤肉</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%B6%80%EC%82%B0%EC%A7%91%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener" title="Google Maps：부산집 서면">MAP</a><a href="https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%EC%A7%91%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener" title="Naver 地圖：부산집 서면">NAVER</a></span></div>
+            <p class="note">五花肉＋小麥冷麵的組合超讚。</p></li>
+          <li><div class="top"><span class="fn">密陽豬肉湯飯</span><span class="kind">湯飯</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%B0%80%EC%96%91%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener" title="Google Maps：밀양돼지국밥 서면">MAP</a><a href="https://map.naver.com/p/search/%EB%B0%80%EC%96%91%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener" title="Naver 地圖：밀양돼지국밥 서면">NAVER</a></span></div>
+            <p class="note">除了湯飯，馬鈴薯燉排骨也推。</p></li>
+          <li><div class="top"><span class="fn">Egg Drop</span><span class="kind">早餐</span><span class="slot alt">備案</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%97%90%EA%B7%B8%EB%93%9C%EB%9E%8D%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener" title="Google Maps：에그드랍 서면">MAP</a><a href="https://map.naver.com/p/search/%EC%97%90%EA%B7%B8%EB%93%9C%EB%9E%8D%20%EC%84%9C%EB%A9%B4" target="_blank" rel="noopener" title="Naver 地圖：에그드랍 서면">NAVER</a></span></div>
+            <p class="note">生吐司早餐。原本排在退房後，但那天直接去排披薩比較實際。</p></li>
+      </ul>
+    </div>
+
+    <div class="area" data-l="5" id="f10" role="tabpanel" aria-labelledby="a10" hidden>
+      <div class="areahd"><span class="dot"></span><h3>田浦</h3><span class="cnt">2 家</span>
+        <p class="where">西面走路 10 分鐘，咖啡廳和選物店的地盤。</p></div>
+      <ul class="eats">
+          <li><div class="top"><span class="fn">Tuoi Gelato</span><span class="kind">冰淇淋</span><span class="slot">D5 順路</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EB%9A%9C%EC%98%A4%EC%9D%B4%EC%A0%A4%EB%9D%BC%EB%98%90%20%EC%A0%84%ED%8F%AC" target="_blank" rel="noopener" title="Google Maps：뚜오이젤라또 전포">MAP</a><a href="https://map.naver.com/p/search/%EB%9A%9C%EC%98%A4%EC%9D%B4%EC%A0%A4%EB%9D%BC%EB%98%90%20%EC%A0%84%ED%8F%AC" target="_blank" rel="noopener" title="Naver 地圖：뚜오이젤라또 전포">NAVER</a></span></div>
+            <p class="note">開心果、伯爵茶都很濃郁。</p></li>
+          <li><div class="top"><span class="fn">田浦咖啡街</span><span class="kind">咖啡</span><span class="slot">D5 下午</span><span class="lk"><a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%A0%84%ED%8F%AC%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener" title="Google Maps：전포카페거리">MAP</a><a href="https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener" title="Naver 地圖：전포카페거리">NAVER</a></span></div>
+            <p class="note">咖啡廳、選物店、拍貼機密度極高，釜山年輕人的地盤。部分店家週一二公休，週五去沒問題。</p></li>
+      </ul>
+    </div>
+
+    <p class="colo">Last updated 2026.09.22</p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  function wire(sel){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(sel));
+    function show(tab){
+      tabs.forEach(function(t){
+        var p = document.getElementById(t.getAttribute('aria-controls'));
+        var on = (t === tab);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (p) p.hidden = !on;
+      });
+    }
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){ show(t); });
+      t.addEventListener('keydown', function(e){
+        var i = tabs.indexOf(t), n = null;
+        if (e.key === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+        if (e.key === 'ArrowLeft')  n = tabs[(i-1+tabs.length) % tabs.length];
+        if (n){ e.preventDefault(); n.focus(); show(n); }
+      });
+    });
+    return show;
+  }
+  var groups = {};
+  ['.mt','.dy','.ar'].forEach(function(sel){ groups[sel] = wire(sel); });
+
+  /* meal slots jump to the matching area in 美食 */
+  Array.prototype.slice.call(document.querySelectorAll('.jump')).forEach(function(j){
+    j.addEventListener('click', function(e){
+      e.preventDefault();
+      var sec = document.getElementById(j.getAttribute('data-sec'));
+      var tab = document.getElementById(j.getAttribute('data-tab'));
+      if (sec) groups['.mt'](sec);
+      if (tab) groups['.ar'](tab);
+      var panel = tab && document.getElementById(tab.getAttribute('aria-controls'));
+      if (panel) {
+        var nav = document.querySelector('.mainnav');
+        var lines = document.querySelector('#s-food .lines');
+        var off = (nav ? nav.offsetHeight : 0) + (lines ? lines.offsetHeight : 0) + 12;
+        var y = panel.getBoundingClientRect().top + window.pageYOffset - off;
+        try { window.scrollTo({ top: y, behavior: 'smooth' }); }
+        catch (err) { window.scrollTo(0, y); }
+      }
+    });
+  });
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.todo input'));
+  var counter = document.querySelector('.notice .n');
+  function tally(){
+    var left = boxes.filter(function(b){ return !b.checked; }).length;
+    if (counter) counter.textContent = left === 0 ? '✓' : String(left);
+  }
+  boxes.forEach(function(b){
+    try { if (localStorage.getItem('busan.' + b.id) === '1') b.checked = true; } catch(e){}
+    b.addEventListener('change', function(){
+      try { localStorage.setItem('busan.' + b.id, b.checked ? '1' : '0'); } catch(e){}
+      tally();
+    });
+  });
+  tally();
+})();
+</script>
